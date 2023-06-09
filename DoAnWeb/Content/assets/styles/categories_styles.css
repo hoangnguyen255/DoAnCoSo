@@ -246,10 +246,11 @@ section
 {
 	height: 100%;
 }
-.super_container
-{
+.super_container {
 	width: 100%;
 	overflow: hidden;
+	background: url(https://nhahangvanlocphat.vn/images/bg_dichvu_home.jpg) no-repeat bottom;
+	
 }
 
 /*********************************
@@ -531,11 +532,11 @@ section
 3.4 Main Navigation
 *********************************/
 
-.main_nav_container
-{
+.main_nav_container {
 	width: 100%;
 	background: #FFFFFF;
 	box-shadow: 0 0 16px rgba(0, 0, 0, 0.15);
+	background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20190629/pngtree-white-festive-seamless-pattern-image_263333.jpg')
 }
 .navbar
 {
@@ -553,7 +554,7 @@ section
 {
 	display: block;
 	color: #1e1e27;
-	font-size: 13px;
+	font-size: 16px;
 	font-weight: 500;
 	text-transform: uppercase;
 	padding: 20px;

@@ -535,11 +535,11 @@ section
 3.4 Main Navigation
 *********************************/
 
-.main_nav_container
-{
+.main_nav_container {
 	width: 100%;
 	background: #FFFFFF;
 	box-shadow: 0 0 16px rgba(0, 0, 0, 0.15);
+	background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20190629/pngtree-white-festive-seamless-pattern-image_263333.jpg')
 }
 .navbar
 {
@@ -557,7 +557,7 @@ section
 {
 	display: block;
 	color: #1e1e27;
-	font-size: 13px;
+	font-size: 16px;
 	font-weight: 500;
 	text-transform: uppercase;
 	padding: 20px;
@@ -946,7 +946,7 @@ section
 
 .new_arrivals {
 	width: 100%;
-	background-image: url('../images/pngtree-restaurant-menu-background-material-image_158673.jpg');
+	background-image: url('https://img.freepik.com/free-vector/seamless-white-interlaced-rounded-arc-patterned-background_53876-97975.jpg?w=1060&t=st=1686329286~exp=1686329886~hmac=ab72bbbc40da0557964f907aa2e789e11ffd21f52926b0cc8b5dd488d2bde6d4');
 }
 .new_arrivals_title
 {
