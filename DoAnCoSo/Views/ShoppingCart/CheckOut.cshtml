@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "Thanh toán";
+}
+<style>
+    .error {
+        color: red;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/categories_styles.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/categories_responsive.css">
+<div class="container product_section_container">
+    <div class="row">
+        <div class="col product_section clearfix">
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="/"><i class="fa fa-angle-right" aria-hidden="true"></i>Giỏ hàng</a></li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="text-center">Thanh toán</h1>
+                </div>
+            </div>
+            <hr />
+            @if (ViewBag.CheckCart != null)
+            {
+                <div class="row">
+                    <div id="show_success"></div>
+                    <div class="col-md-8">
+                        @Html.Action("Partial_Checkout", "ShoppingCart")
+                    </div>
+                    <div class="col-md-4">
+                        @Html.Action("Partial_Item_ThanhToan", "ShoppingCart")
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div>
+                    <h5>Vui lòng thêm <a href="/san-pham"> sản phẩm</a> vào giỏ hàng hehe!</h5>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Content/assets/js/categories_custom.js"></script>
+    <script>
+        function Onfailure(rs) {
+            if (!rs.Success) {
+                $('#show_success').html("Bạn mua hàng thất bại! Xin vui lòng thử lại");
+            }
+        }
+        $(document).ready(function () {
+            $('#myForm').validate({
+                rules: {
+                    'customername': {
+                        required: true
+                    },
+                    'phone': {
+                        required: true,
+                    },
+                    'address': {
+                        required: true
+                    },
+                    'email': {
+                        required: true,
+                        email: true
+                    }
+                },
+                messages: {
+                    'customername': 'Không được để trống họ và tên',
+                    'phone': 'Không được để trống số điện thoại',
+                    'address': 'Không được  để trống địa chỉ',
+                    'email': 'Email không hợp lệ'
+                }
+            });
+        });
+    </script>
+}

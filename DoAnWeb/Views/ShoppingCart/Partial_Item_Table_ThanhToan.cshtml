@@ -1,0 +1,61 @@
+﻿@*@model IEnumerable<DoAnCoSo.Models.ShoppingCartTableItem>
+    @using DoAnCoSo.Common
+    @if (Model != null && Model.Any())
+    {
+        <h3 class="text-center">Bàn<span style="float:right;"><small>Số loại món ăn: @Model.Count()</small></span></h3>
+        var i = 0;
+        <div style="border:1px solid #808080;">
+            <table class="table">
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td><h4>@item.TableName</h4></td>
+                        <td><h4>Số lượng: @item.Quantity</h4></td>
+                    </tr>
+                }
+                <tr>
+                </tr>
+            </table>
+        </div>
+    }
+    else
+    {
+        }
+*@
+@model DoAnCoSo.Models.ShoppingCartNew
+
+
+@using DoAnCoSo.Common
+@if (Model != null && Model.Tables.Any())
+{
+    <h3 class="text-center">Bàn</h3>
+    var i = 0;
+    var tongsoban = 0;
+    <div style="border:1px solid #808080;">
+        <table class="table">
+            @foreach (var item in Model.Tables)
+            {
+                tongsoban += item.Quantity;
+                <tr>
+                    <td><h5>@item.TableName</h5></td>
+                    <td><h5>Số lượng: @item.Quantity</h5></td>
+
+                </tr>
+            }
+            <tr>
+                <td><h5>Tổng số bàn: </h5></td>
+                <td><h5>@Common.FormatNumber(tongsoban, 0)</h5></td>
+            </tr>   
+            <tr>
+
+                <td><h5>Tổng tiền:</h5></td>
+                <td><h5>@Common.FormatNumber(Model.Total, 0) VND</h5></td>
+            </tr>
+        </table>
+    </div>
+}
+else
+{
+    }
+

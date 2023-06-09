@@ -1,0 +1,18 @@
+﻿@model IEnumerable<DoAnCoSo.Models.EF.Category>
+@if (Model != null && Model.Any())
+{
+    <ul class="navbar_menu">
+        @foreach (var item in Model)
+        {
+            if (item.alias.Equals("trang-chu"))
+            {
+                item.alias = "";
+            }
+            if (!string.IsNullOrEmpty(item.link))
+            {
+                item.alias = item.link;
+            }
+            <li><a href="/@item.alias">@item.title</a></li>
+        }    
+    </ul>
+}

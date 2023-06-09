@@ -1,0 +1,155 @@
+﻿@model PagedList.PagedList<DoAnCoSo.Models.EF.Comment>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "comment";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section naviheader{
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin" class="nav-link">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/comment" class="nav-link">@ViewBag.Title</a>
+        </li>
+    </ul>
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Quản lý @ViewBag.Title</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewBag.Title</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Danh sách @ViewBag.Title</h3>
+
+          @*  <div class="card-tools">
+                <a href="/admin/news/add" class="btn btn-primary">Thêm mới @ViewBag.Title</a>
+            </div>*@
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-6">
+                    @using (Html.BeginForm("Index", "Comment", FormMethod.Get, new { }))
+                    {
+                        <div class="input-group input-group-sm">
+                            @Html.TextBox("SearchText")
+                            <span class="input-group-append">
+                                <button type="submit" class="btn btn-info btn-flat">Tìm kiếm</button>
+                            </span>
+                        </div>
+                    }
+                </div>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên khách hàng</th>
+                        <th>Email</th>
+                        <th>Mã món ăn</th>
+                        <th>Sao</th>
+                        <th>Đánh giá</th>
+                        <th>Ngày đánh giá</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        var i = (ViewBag.Page - 1) * ViewBag.PageSize + 1;
+                        foreach (var item in Model)
+                        {
+                            var strCheck = item.isactive ? "<i class='fa fa-check text-success'></i>" : "<i class='fas fa-times text-danger'></i>";
+                            <tr id="trow_@item.id">
+                                <td>@i</td>
+                                <td>@item.name</td>
+                                <td>@item.Email</td>                                
+                                <td>@item.productid</td>
+                                <td>
+                                    <i class="@(item.star >= 1 ? "fa fa-star": "fa fa-star-o")" style="color : yellow" aria-hidden="true"></i>
+                                    <i class="@(item.star >= 2 ? "fa fa-star": "fa fa-star-o")" style="color : yellow" aria-hidden="true"></i>
+                                    <i class="@(item.star >= 3 ? "fa fa-star": "fa fa-star-o")" style="color : yellow" aria-hidden="true"></i>
+                                    <i class="@(item.star >= 4 ? "fa fa-star": "fa fa-star-o")" style="color : yellow" aria-hidden="true"></i>
+                                    <i class="@(item.star >= 5 ? "fa fa-star": "fa fa-star-o")" style="color : yellow" aria-hidden="true"></i>
+                                </td>
+                                <td>@item.message</td>
+                                <td>@item.createddate.ToString("dd/MM/yyyy")</td>
+
+                                <td class="text-center">
+                                    <a href="#" data-id="@item.id" class="btnActive">@Html.Raw(strCheck)</a>
+                                </td>
+
+                            </tr>
+                            i++;
+                        }
+
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4">Không có bản ghi nào</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $('body').on('click', '.btnActive', function (e) {
+                e.preventDefault();
+                var btn = $(this);
+                var id = btn.data("id");
+                $.ajax({
+                    url: '/admin/comment/isactive',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (rs) {
+                        if (rs.success) {
+                            if (rs.isActive) {
+                                btn.html("<i class='fa fa-check text-success'></i>");
+                            }
+                            else {
+                                btn.html("<i class='fas fa-times text-danger'></i>");
+
+                            }
+                        }
+                    }
+                })
+            });
+        });
+    </script>
+}

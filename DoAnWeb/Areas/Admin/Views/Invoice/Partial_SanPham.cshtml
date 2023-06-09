@@ -1,0 +1,133 @@
+﻿@model IEnumerable<DoAnCoSo.Models.EF.OrderDetail>
+
+
+@if (Model != null && Model.Any())
+{
+
+    int i = 1;
+    <!--<table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tên sản phẩm</th>-->
+    @*                <th>Bàn</th>
+    *@
+    <!--<th>Giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+        </tr>
+
+    </thead>
+    <tbody>-->
+
+    foreach (var item in Model)
+    {
+        if (item.Product != null)
+        {
+
+            <tr>
+                <div class="invoice-header">
+
+                    <p>Mã hóa đơn: @item.Order.code </p>
+                    <p>Khách hàng: @item.Order.customername </p>
+                    <p>Ngày đặt  : @item.Order.datetime</p>
+
+
+
+                </div>
+            </tr>
+            <div class="invoice-items">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Tên sản phẩm</th>
+                            @*                <th>Bàn</th>
+                            *@
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                            <th>Tổng tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@item.Product.title</td>
+                            <td>@item.price</td>
+                            <td>@item.quantity</td>
+                            <td>@DoAnCoSo.Common.Common.FormatNumber((item.price * item.quantity), 0)</td>
+                        </tr>
+
+
+                    </tbody>
+
+
+                </table>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Loại bàn</th>
+                            <th>Số lượng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var inn in Model)
+                        {
+                            if (inn.Table != null)
+                            {
+                                <tr>
+
+                                    <td>@inn.Table.title</td>
+
+                                    <td>@inn.quantity</td>
+                                </tr>
+
+                            }
+
+                        }
+
+
+                    </tbody>
+
+
+                </table>
+            </div>
+
+
+            i++;
+        }
+
+    }
+
+
+
+
+    <button onclick="printInvoice()">In hóa đơn</button>
+    @*<button class="invoice-button"> hóa đơn</button>*@
+    @*<button class="invoice-button" onclick="printInvoice()">Hóa đơn</button>*@
+
+    //</table>
+}
+<script>
+    function printInvoice() {
+        // Lấy phần tử chứa nội dung hóa đơn
+        var invoiceElement = document.querySelector('.invoice');
+        // Thay thế bằng đường dẫn đúng
+
+        // Chuyển hướng đến trang in
+
+
+        // Áp dụng CSS stylesheet cho trang in
+        var stylesheets = document.querySelectorAll('style');
+        stylesheets.forEach(function (stylesheet) {
+            document.head.appendChild(stylesheet.cloneNode(true));
+        });
+
+        // In trang
+        window.print();
+
+        // Xóa CSS stylesheet sau khi in
+        stylesheets.forEach(function (stylesheet) {
+            document.head.removeChild(stylesheet);
+        });
+    }
+</script>

@@ -1,0 +1,62 @@
+﻿@model DoAnCoSo.Models.EF.Comment
+
+
+<div class="add_review">
+    @using (Ajax.BeginForm("Post", "Comment", new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "load_data",
+        OnComplete = "OnSuccessCO",
+        OnFailure = "Onfailure"
+    }, new { @id = "myForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <h1>Add Review</h1>
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Name*" required class="form-control" data-error="Name is required." />
+            </div>
+
+            <div class="form-group">
+
+                <input type="text" name="Email" placeholder="Email*" class="form-control" data-error="Valid email is required." />
+            </div>
+
+
+            @* <input id="review_name" class="form_input input_name" type="text" name="name" placeholder="Name*" required="required" data-error="Name is required.">
+                <input id="review_email" class="form_input input_email" type="email" name="email" placeholder="Email*" required="required" data-error="Valid email is required.">
+            *@
+        </div>
+        <div>
+            <h1>Your Rating:</h1>
+            <ul class="user_star_rating">
+                <li><i class="fa fa-star" aria-hidden="true" onclick="onClickStart(1)"></i></li>
+                <li><i class="fa fa-star" aria-hidden="true" onclick="onClickStart(2)"></i></li>
+                <li><i class="fa fa-star" aria-hidden="true" onclick="onClickStart(3)"></i></li>
+                <li><i class="fa fa-star" aria-hidden="true"  onclick="onClickStart(4)"></i></li>
+                <li><i class="fa fa-star" aria-hidden="true"  onclick="onClickStart(5)"></i></li>
+            </ul>
+            <input id="star" type="hidden" name="star" value="5" />
+            <input type="hidden" id="productIdstar" name="productid" />
+            <textarea id="review_message" class="input_review" name="message" placeholder="Your Review" rows="4" required data-error="Please, leave us a review."></textarea>
+        </div>
+        <div class="text-left text-sm-right">
+            <button id="review_submit" type="submit" class="red_button review_submit_btn trans_300" value="Submit">submit</button>
+        </div>
+    }
+</div>
+
+<script>
+    function onClickStart(val) {
+        debugger;
+        $('#star').val(val);
+    }
+
+    $('#productIdstar').val($('#detailproductid').val());
+    function OnSuccessCO() {
+        alert('Comment thanh cong!');
+    }
+</script>
+
+
+

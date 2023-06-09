@@ -1,0 +1,28 @@
+﻿@model IEnumerable<DoAnCoSo.Models.ShoppingCartItem>
+@using DoAnCoSo.Common
+@if (Model != null && Model.Any())
+{
+    <h3 class="text-center">Thực đơn@*<span style="float:right;"><small>Số loại món ăn: @Model.Count()</small></span>*@</h3>
+    var i = 0;
+    var tongtien = decimal.Zero;
+    <div style="border:1px solid #808080;">
+        <table class="table">
+            @foreach (var item in Model)
+            {
+                tongtien += item.TotalPrice;
+                <tr>
+                    <td><h5>@item.ProductName x @item.Quantity </h5></td>
+                    <td><h5>@Common.FormatNumber(item.Price, 0)</h5></td>
+                </tr>
+            }
+            <tr>
+                <td><h5>Thành tiền</h5></td>
+                <td><h5>@Common.FormatNumber(tongtien, 0) VND</h5></td>
+            </tr>
+        </table>
+    </div>
+}
+else
+{
+
+}
