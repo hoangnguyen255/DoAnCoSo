@@ -251,6 +251,7 @@
     <Compile Include="Models\Common\Common.cs" />
     <Compile Include="Models\Common\Filter.cs" />
     <Compile Include="Models\EF\Comment.cs" />
+    <Compile Include="Models\EF\Employee.cs" />
     <Compile Include="Models\EF\TableImage.cs" />
     <Compile Include="Models\EF\Space.cs" />
     <Compile Include="Models\EF\Table.cs" />
