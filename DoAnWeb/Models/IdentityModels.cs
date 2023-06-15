@@ -43,8 +43,7 @@ namespace DoAnCoSo.Models
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Table> Tables { get; set; }
         public DbSet<TableImage> TableImages { get; set; }
-
-
+        public DbSet<Employee> Employees { get; set; }
 
 
         public static ApplicationDbContext Create()

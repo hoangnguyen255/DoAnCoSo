@@ -1049,7 +1049,9 @@ section
 }
 .product_image img
 {
-	width: 100%;
+	/*width: 100%;*/
+	height: 155px;
+	width: 221px;
 }
 .product_info
 {
@@ -1420,9 +1422,9 @@ section
 	font-size: 30px;
 	color: #fe4c50;
 }
-.benefit_content
-{
+.benefit_content {
 	padding-left: 22px;
+	color: #fe4c50;
 }
 .benefit_content h6
 {
@@ -1546,6 +1548,7 @@ section
 {
 	margin-bottom: 0px;
 	line-height: 24px;
+	color: crimson;
 }
 .newsletter_text p
 {

@@ -1,0 +1,136 @@
+﻿@model DoAnCoSo.Models.EF.Employee
+@{
+    ViewBag.Title = "Thêm mới nhân viên";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@section naviheader{
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin" class="nav-link">Trang chủ</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="/admin/employee" class="nav-link">Nhân viên</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Thêm mới</a>
+        </li>
+    </ul>
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Thêm mới nhân viên</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Nhân viên</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Thông tin thêm mới nhân viên</h3>
+        </div>
+        <div class="card-body">
+            <div class="bs-stepper-content">
+                @using (Html.BeginForm("add", "Employee", FormMethod.Post, new { }))
+                {
+                    @Html.AntiForgeryToken();
+                    @Html.ValidationSummary(true)
+                    @*< !--your steps content here-- >*@
+                <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Họ tên </label>
+                        @Html.TextBoxFor(x => x.name, new { @class = "form-control", @placeholder = "Họ tên" })
+                        @Html.ValidationMessageFor(x => x.name, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">Ảnh đại diện</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                @Html.TextBoxFor(x => x.image, new { @id = "txtImage", @class = "from-control" })
+                            </div>
+
+                        </div>
+                        <div class="input-group-append">
+                            <input type="button" value="Tải ảnh" onclick="BrowServer('txtImage');" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Giới tính</label>
+                        <select class="form-control" name="gioitinh">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Ngày sinh</label>
+                        <input type="datetime-local" name="ngaysinh" class="datepicker text-center" autocomplete="off" />
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Địa chỉ</label>
+                        @Html.TextBoxFor(x => x.diachi, new { @class = "form-control", @placeholder = "Địa chỉ" })
+                        @Html.ValidationMessageFor(x => x.diachi, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Chức vụ</label>
+                        <select class="form-control" name="chucvu">
+                            <option value="Giám đốc" selected>Giám đốc</option>
+                            <option value="Phó giám đốc">Phó giám đốc</option>
+                            <option value="Quản lý">Quản lý</option>
+                            <option value="Thu ngân">Thu ngân</option>
+                            <option value="Nhân viên kinh doanh">Nhân viên kinh doanh</option>
+                            <option value="Nhân viên bếp">Nhân viên bếp</option>
+                            <option value="Nhân viên bàn">Nhân viên bàn</option>
+                            <option value="Nhân viên vệ sinh">Nhân viên vệ sinh</option>
+                            <option value="Nhân viên an ninh">Nhân viên an ninh</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <a href="/admin/employee" class="btn btn-danger">Quay lại</a>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+                </div>
+                }
+
+            </div>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+@section scripts{
+    <script>
+        function BrowServer(field) {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                document.getElementById(field).value = fileUrl;
+            };
+            finder.popup();
+
+        }
+    </script>
+
+}
+

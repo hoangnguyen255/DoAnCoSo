@@ -164,7 +164,7 @@ namespace DoAnCoSo.Controllers
                         order.modifierdate = DateTime.Now;
                         order.createdby = req.phone;
                         Random rd = new Random();
-                        order.code = "DH" + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9);
+                        order.code = "DDB" + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9);
                     }
 
                     carttable.itemstable.ForEach(x => order.OrderDetails.Add(new OrderDetail

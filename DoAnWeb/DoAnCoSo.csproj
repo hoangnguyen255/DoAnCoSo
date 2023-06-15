@@ -182,6 +182,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\CommentController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\InvoiceController.cs" />
     <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
@@ -244,6 +245,18 @@
     <Compile Include="Migrations\202306060051057_UpdateComment3.cs" />
     <Compile Include="Migrations\202306060051057_UpdateComment3.designer.cs">
       <DependentUpon>202306060051057_UpdateComment3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306130537575_AddEmployee.cs" />
+    <Compile Include="Migrations\202306130537575_AddEmployee.designer.cs">
+      <DependentUpon>202306130537575_AddEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306130548221_AddEmployee1.cs" />
+    <Compile Include="Migrations\202306130548221_AddEmployee1.designer.cs">
+      <DependentUpon>202306130548221_AddEmployee1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306131136103_AddEmployee2.cs" />
+    <Compile Include="Migrations\202306131136103_AddEmployee2.designer.cs">
+      <DependentUpon>202306131136103_AddEmployee2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -340,6 +353,7 @@
     <Content Include="Content\assets\images\desc_2.jpg" />
     <Content Include="Content\assets\images\desc_3.jpg" />
     <Content Include="Content\assets\images\download.jpg" />
+    <Content Include="Content\assets\images\haisan.jpg" />
     <Content Include="Content\assets\images\map_marker.png" />
     <Content Include="Content\assets\images\pngtree-restaurant-menu-background-material-image_158673.jpg" />
     <Content Include="Content\assets\images\pngtree-restaurant-menu-background-material-image_158677.jpg" />
@@ -3382,6 +3396,9 @@
     <Content Include="Areas\Admin\Views\Invoice\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Invoice\Partial_SanPham.cshtml" />
     <Content Include="Areas\Admin\Views\Invoice\View.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\add.cshtml" />
+    <Content Include="Areas\Admin\Views\Employee\Edit.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3518,6 +3535,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306060051057_UpdateComment3.resx">
       <DependentUpon>202306060051057_UpdateComment3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306130537575_AddEmployee.resx">
+      <DependentUpon>202306130537575_AddEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306130548221_AddEmployee1.resx">
+      <DependentUpon>202306130548221_AddEmployee1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306131136103_AddEmployee2.resx">
+      <DependentUpon>202306131136103_AddEmployee2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

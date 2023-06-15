@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace DoAnCoSo.Models.EF
 {
-    public class Employee
+    public class Employee : CommonAbstracts
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -18,6 +18,7 @@ namespace DoAnCoSo.Models.EF
         public string name { get; set; }
         public string image { get; set; }
         public string gioitinh { get; set; }
+        public string diachi { get; set; }
         public DateTime ngaysinh { get; set; }
         public string chucvu { get; set; }
  
