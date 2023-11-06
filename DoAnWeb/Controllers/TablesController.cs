@@ -38,7 +38,33 @@ namespace DoAnCoSo.Controllers
             ViewBag.CateId = id;
             return View(items);
         }
-      
+
+        public ActionResult Partial_View_Table(DateTime ?date)
+        {
+            var listtables = db.Tables.ToList();
+            if (date == null)
+            {
+                return PartialView(null);
+            }
+            var dateMinus5Hours = date.Value.AddHours(-4);
+            var datePlus5Hours = date.Value.AddHours(4);
+            var listtablesold = db.Tables.ToList();
+            var listorderdetail = db.OrderDetails.Where(x => x.Order.datetime >= dateMinus5Hours && x.Order.datetime <= datePlus5Hours).ToList();
+
+            foreach (var table in listtables)
+            {
+                foreach (var orderdetail in listorderdetail)
+                {
+                    if (table.id == orderdetail.tableid)
+                    {
+                        listtablesold.Remove(table);
+                    }
+                }
+            }
+            return PartialView(listtablesold);
+        }
+
+
     }
 
 }

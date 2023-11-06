@@ -27,6 +27,7 @@
         debugger;
         e.preventDefault();
         var id = $(this).data('id');
+        var datetime = $('#datetimepicker').val();
         var quatity = 1;
         var tQuantity = $('#quantity_value').text();
         if (tQuantity != '') {
@@ -36,7 +37,7 @@
         $.ajax({
             url: '/shoppingcart/addtabletocart',
             type: 'POST',
-            data: { id: id, quantity: quatity },
+            data: { id: id, quantity: quatity, time: datetime },
             success: function (rs) {
                 if (rs.Success) {
                     $('#checkout_items').html(rs.Count);

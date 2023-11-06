@@ -1,0 +1,31 @@
+﻿@model IEnumerable<DoAnCoSo.Models.EF.Table>
+@using DoAnCoSo.Common
+@if (Model != null && Model.Any())
+{
+    foreach (var item in Model) 
+    {
+        var strImage = "";
+        var img = item.TableImages.FirstOrDefault(x => x.isdefault);
+        if (img != null)
+        {
+            strImage = img.image;
+        }
+        <div class="product-item @item.Space.alias">
+            <div class="product discount product_filter">
+                <div class="product_image">
+                    <img src="@strImage" alt="@item.title">
+                </div>
+                <div class="favorite faorite_left"></div>
+                <div class="quantity">
+                    <h6 class="quantity" style="margin-top: 15px; margin-left: 37px">@item.description</h6>
+                </div>
+                <div class="product_info">
+                    <h6 class="product_name"><a href="/chi-tiet/@item.alias-@(item.id)">@item.title</a></h6>
+
+                </div>
+            </div>
+            <div class="red_button add_to_cart_button"><a href="" class="btnAddTableToCart" data-id="@item.id">add to cart</a></div>
+        </div>
+
+    }
+}

@@ -41,7 +41,7 @@ namespace DoAnCoSo.Controllers
             {
                 ViewBag.CheckCart = cart;
             }
-          
+
             ShoppingCart carttable = (ShoppingCart)Session["CartTable"];
             if (carttable != null && carttable.itemstable.Any())
             {
@@ -49,13 +49,27 @@ namespace DoAnCoSo.Controllers
             }
             return View();
         }
+        public ActionResult CheckOutShip()
+        {
+            ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            if (cart != null && cart.items.Any())
+            {
+                ViewBag.CheckCart = cart;
+            }
+            return View();
+        }
         public ActionResult Partial_CheckOut()
+        {
+            return PartialView();
+        }
+
+        public ActionResult Partial_CheckOutShip()
         {
             return PartialView();
         }
         public ActionResult Partial_Item_ThanhToan()
         {
-           
+
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
             if (cart != null && cart.items.Any())
             {
@@ -90,14 +104,14 @@ namespace DoAnCoSo.Controllers
                     return PartialView();
 
                 }*/
-        public ActionResult Partial_Item_Table_ThanhToan()
+        public ActionResult Partial_Item_Table_ThanhToan(DateTime? date)
         {
             ShoppingCart carttable = (ShoppingCart)Session["CartTable"];
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
             decimal total = carttable.itemstable.Sum(x => x.Quantity);
             decimal totalPrice = 0;
 
-            if(cart != null)
+            if (cart != null)
             {
                 totalPrice = total * cart.items.Sum(x => x.Quantity * x.Price);
             }
@@ -131,26 +145,106 @@ namespace DoAnCoSo.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CheckOut(OrderViewModel req)
+        public ActionResult CheckOutShip(OrderViewModel req)
         {
             var code = new { Success = false, Code = -1 };
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 ShoppingCart cart = (ShoppingCart)Session["Cart"];
-                ShoppingCart carttable = (ShoppingCart)Session["CartTable"];
-                
-                if (carttable !=null )
+                if (cart != null)
                 {
                     Order order = new Order();
                     order.customername = req.customername;
                     order.phone = req.phone;
                     order.address = req.address;
                     order.email = req.email;
-                    order.datetime = req.datetime;
+                    cart.items.ForEach(x => order.OrderDetails.Add(new OrderDetail
+                    {
+                        productid = x.ProductId,
+                        quantity = x.Quantity,
+                        price = x.Price
+                    }));
+                    order.total = cart.items.Sum(x => (x.Price * x.Quantity));
+                    order.typepayment = req.typepayment;
+                    order.createddate = req.datetime;
+                    order.modifierdate = DateTime.Now;
+                    order.createdby = req.phone;
+                    Random rd = new Random();
+                    order.code = "DDB" + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9);
 
-                    if(cart != null)
+                    db.Orders.Add(order);
+                    db.SaveChanges();
+                    //return Json("CheckOutSuccess");
+                    //send mail cho khachs hang
+                    var strSanPham = "";
+                    var thanhtien = decimal.Zero;
+                    var TongTien = decimal.Zero;
+
+                    foreach (var sp in cart.items)
+                    {
+                        strSanPham += "<tr>";
+                        strSanPham += "<td>" + sp.ProductName + "</td>";
+                        strSanPham += "<td>" + sp.Quantity + "</td>";
+                        strSanPham += "<td>" + DoAnCoSo.Common.Common.FormatNumber(sp.TotalPrice, 0) + "</td>";
+                        strSanPham += "</tr>";
+                        thanhtien += sp.Price * sp.Quantity;
+                    }
+
+                    TongTien = thanhtien;
+                    string contentCustomer = System.IO.File.ReadAllText(Server.MapPath("~/Content/templates/send2.html"));
+                    contentCustomer = contentCustomer.Replace("{{MaDon}}", order.code);
+                    contentCustomer = contentCustomer.Replace("{{SanPham}}", strSanPham);
+                    contentCustomer = contentCustomer.Replace("{{NgayDat}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm"));
+                    contentCustomer = contentCustomer.Replace("{{TenKhachHang}}", order.customername);
+                    contentCustomer = contentCustomer.Replace("{{Phone}}", order.phone);
+                    contentCustomer = contentCustomer.Replace("{{Email}}", req.email);
+                    contentCustomer = contentCustomer.Replace("{{DiaChiNhanHang}}", order.address);
+                    contentCustomer = contentCustomer.Replace("{{ThanhTien}}", DoAnCoSo.Common.Common.FormatNumber(thanhtien, 0));
+                    contentCustomer = contentCustomer.Replace("{{TongTien}}", DoAnCoSo.Common.Common.FormatNumber(TongTien, 0));
+                    DoAnCoSo.Common.Common.SendMail("VietKichen", "Đơn đặt hàng#" + order.code, contentCustomer.ToString(), req.email);
+
+                    string contentAdmin = System.IO.File.ReadAllText(Server.MapPath("~/Content/templates/send1.html"));
+                    contentAdmin = contentAdmin.Replace("{{MaDon}}", order.code);
+                    contentAdmin = contentAdmin.Replace("{{SanPham}}", strSanPham);
+                    contentAdmin = contentAdmin.Replace("{{NgayDat}}", DateTime.Now.ToString("dd/MM/yyyy"));
+                    contentAdmin = contentAdmin.Replace("{{TenKhachHang}}", order.customername);
+                    contentAdmin = contentAdmin.Replace("{{Phone}}", order.phone);
+                    contentAdmin = contentAdmin.Replace("{{Email}}", req.email);
+                    contentAdmin = contentAdmin.Replace("{{DiaChiNhanHang}}", order.address);
+                    contentAdmin = contentAdmin.Replace("{{ThanhTien}}", DoAnCoSo.Common.Common.FormatNumber(thanhtien, 0));
+                    contentAdmin = contentAdmin.Replace("{{TongTien}}", DoAnCoSo.Common.Common.FormatNumber(TongTien, 0));
+                    DoAnCoSo.Common.Common.SendMail("VietKichen", "Đơn đặt hàng mới #" + order.code, contentAdmin.ToString(), ConfigurationManager.AppSettings["EmailAdmin"]);
+                    cart.clearCart();
+
+                    return Json("CheckOutSuccess");
+                }
+            }
+            return Json(code);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CheckOut(OrderViewModel req)
+        {
+            var code = new { Success = false, Code = -1 };
+            if (!ModelState.IsValid)
+            {
+                ShoppingCart cart = (ShoppingCart)Session["Cart"];
+                ShoppingCart carttable = (ShoppingCart)Session["CartTable"];
+                var time = HttpContext.Session["TimeTable"] as DateTime?;
+                if (carttable != null)
+                {
+                    Order order = new Order();
+                    order.customername = req.customername;
+                    order.phone = req.phone;
+                    order.address = req.address;
+                    order.email = req.email;
+                    order.datetime = time.Value;
+
+                    if (cart != null)
                     {
                         cart.items.ForEach(x => order.OrderDetails.Add(new OrderDetail
                         {
@@ -158,7 +252,7 @@ namespace DoAnCoSo.Controllers
                             quantity = x.Quantity,
                             price = x.Price
                         }));
-                        order.total = cart.items.Sum(x => (x.Price * x.Quantity) *(carttable.itemstable.Sum(y=>y.Quantity)));
+                        order.total = cart.items.Sum(x => (x.Price * x.Quantity) * (carttable.itemstable.Sum(y => y.Quantity)));
                         order.typepayment = req.typepayment;
                         order.createddate = DateTime.Now;
                         order.modifierdate = DateTime.Now;
@@ -172,15 +266,15 @@ namespace DoAnCoSo.Controllers
                         //productid = x.TableId,
                         tableid = x.TableId,
                         quantity = x.Quantity,
-                    })); 
+                    }));
 
-                   /* order.total = total;// cart.items.Sum(x => (x.Price * x.Quantity));
-                    order.typepayment = req.typepayment;
-                    order.createddate = DateTime.Now;
-                    order.modifierdate = DateTime.Now;
-                    order.createdby = req.phone;
-                    Random rd = new Random();
-                    order.code = "DH" + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9);*/
+                    /* order.total = total;// cart.items.Sum(x => (x.Price * x.Quantity));
+                     order.typepayment = req.typepayment;
+                     order.createddate = DateTime.Now;
+                     order.modifierdate = DateTime.Now;
+                     order.createdby = req.phone;
+                     Random rd = new Random();
+                     order.code = "DH" + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9);*/
                     //order.E = req.CustomerName;
                     db.Orders.Add(order);
                     db.SaveChanges();
@@ -189,7 +283,7 @@ namespace DoAnCoSo.Controllers
                     var strSanPham = "";
                     var thanhtien = decimal.Zero;
                     var TongTien = decimal.Zero;
-                    if(cart !=null)
+                    if (cart != null)
                     {
                         foreach (var sp in cart.items)
                         {
@@ -198,7 +292,7 @@ namespace DoAnCoSo.Controllers
                             strSanPham += "<td>" + sp.Quantity + "</td>";
                             strSanPham += "<td>" + DoAnCoSo.Common.Common.FormatNumber(sp.TotalPrice, 0) + "</td>";
                             strSanPham += "</tr>";
-                            thanhtien += sp.Price * sp.Quantity *carttable.itemstable.Sum(x=>x.Quantity);
+                            thanhtien += sp.Price * sp.Quantity * carttable.itemstable.Sum(x => x.Quantity);
                         }
                     }
 
@@ -216,16 +310,16 @@ namespace DoAnCoSo.Controllers
                     contentCustomer = contentCustomer.Replace("{{MaDon}}", order.code);
                     contentCustomer = contentCustomer.Replace("{{SanPham}}", strSanPham);
                     contentCustomer = contentCustomer.Replace("{{Table}}", strTable);
-                    contentCustomer = contentCustomer.Replace("{{NgayDat}}", DateTime.Now.ToString("dd/MM/yyyy"));
+                    contentCustomer = contentCustomer.Replace("{{NgayDat}}", DateTime.Now.ToString("dd/MM/yyyy hh:mm"));
                     contentCustomer = contentCustomer.Replace("{{TenKhachHang}}", order.customername);
                     contentCustomer = contentCustomer.Replace("{{Phone}}", order.phone);
-                    contentCustomer = contentCustomer.Replace("{{NgayDatBan}}", req.datetime.ToString("dd/MM/yyyy hh:mm"));
+                    contentCustomer = contentCustomer.Replace("{{NgayDatBan}}", time.Value.ToString("dd/MM/yyyy hh:mm"));
                     contentCustomer = contentCustomer.Replace("{{Email}}", req.email);
                     contentCustomer = contentCustomer.Replace("{{DiaChiNhanHang}}", order.address);
                     contentCustomer = contentCustomer.Replace("{{ThanhTien}}", DoAnCoSo.Common.Common.FormatNumber(thanhtien, 0));
                     contentCustomer = contentCustomer.Replace("{{TongTien}}", DoAnCoSo.Common.Common.FormatNumber(TongTien, 0));
-                    DoAnCoSo.Common.Common.SendMail("GiaDungViet", "Đơn hàng #" + order.code, contentCustomer.ToString(), req.email); 
-                    
+                    DoAnCoSo.Common.Common.SendMail("VietKichen", "Đơn đặt bàn #" + order.code, contentCustomer.ToString(), req.email);
+
                     string contentAdmin = System.IO.File.ReadAllText(Server.MapPath("~/Content/templates/send1.html"));
                     contentAdmin = contentAdmin.Replace("{{MaDon}}", order.code);
                     contentAdmin = contentAdmin.Replace("{{SanPham}}", strSanPham);
@@ -233,22 +327,24 @@ namespace DoAnCoSo.Controllers
                     contentAdmin = contentAdmin.Replace("{{NgayDat}}", DateTime.Now.ToString("dd/MM/yyyy"));
                     contentAdmin = contentAdmin.Replace("{{TenKhachHang}}", order.customername);
                     contentAdmin = contentAdmin.Replace("{{Phone}}", order.phone);
+                    contentAdmin = contentAdmin.Replace("{{NgayDatBan}}", order.datetime.ToString("dd/MM/yyyy hh:mm"));
                     contentAdmin = contentAdmin.Replace("{{Email}}", req.email);
                     contentAdmin = contentAdmin.Replace("{{DiaChiNhanHang}}", order.address);
                     contentAdmin = contentAdmin.Replace("{{ThanhTien}}", DoAnCoSo.Common.Common.FormatNumber(thanhtien, 0));
                     contentAdmin = contentAdmin.Replace("{{TongTien}}", DoAnCoSo.Common.Common.FormatNumber(TongTien, 0));
-                    DoAnCoSo.Common.Common.SendMail("GiaDungViet", "Đơn hàng mới #" + order.code, contentAdmin.ToString(), ConfigurationManager.AppSettings["EmailAdmin"]);
-                    if(cart != null)
+                    DoAnCoSo.Common.Common.SendMail("VietKichen", "Đơn đặt bàn mới #" + order.code, contentAdmin.ToString(), ConfigurationManager.AppSettings["EmailAdmin"]);
+                    if (cart != null)
                     {
                         cart.clearCart();
                     }
                     carttable.clearCart();
                     return Json("CheckOutSuccess");
-                }        
+                }
             }
 
             return Json(code);
         }
+
         public ActionResult ShowCount()
         {
             ShoppingCart cart = (ShoppingCart)Session["Cart"];
@@ -292,12 +388,12 @@ namespace DoAnCoSo.Controllers
                 item.TotalPrice = item.Quantity * item.Price;
                 cart.AddToCart(item, quantity);
                 Session["Cart"] = cart;
-                code = new { Success = true, msg = "Thêm sản phẩm vào giỏ hàng thành công!", code = 1, Count = cart.items.Count };
+                code = new { Success = true, msg = "Thêm món ăn vào giỏ hàng thành công!", code = 1, Count = cart.items.Count };
             }
             return Json(code);
         }
         [HttpPost]
-        public ActionResult AddTableToCart(int id, int quantity)
+        public ActionResult AddTableToCart(int id, int quantity, DateTime time)
         {
             var code = new { Success = false, msg = "", code = -1 };
             var db = new ApplicationDbContext();
@@ -321,9 +417,10 @@ namespace DoAnCoSo.Controllers
                 {
                     item.TableImg = checkTable.TableImages.FirstOrDefault(x => x.isdefault).image;
                 }
-
+                //DateTime dateTime = DateTime.Now;
                 carttable.AddTableToCart(item, quantity);
                 Session["CartTable"] = carttable;
+                Session["TimeTable"] = time;
                 code = new { Success = true, msg = "Thêm bàn vào giỏ hàng thành công!", code = 1 };
             }
             return Json(code);
@@ -370,7 +467,7 @@ namespace DoAnCoSo.Controllers
                 return Json(new { Success = true });
             }
             return Json(new { Success = false, msg = "Cập nhật số lượng bàn thành công!" });
-        }    
+        }
 
         [HttpPost]
         public ActionResult UpdateTable(int id, int quantity)

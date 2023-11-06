@@ -21,8 +21,7 @@ namespace DoAnCoSo.Controllers
         }*/
         public ActionResult Index(string SearchText)
         {
-            
-            IEnumerable<Product> items = db.Products.OrderByDescending(x => x.id);
+            IEnumerable<Product> items = db.Products.OrderByDescending(x => x.id).Where(x => x.isactive == true).ToList();
             if (!string.IsNullOrEmpty(SearchText))
             {
                 items = items.Where(x => x.alias.Contains(SearchText) || x.title.Contains(SearchText));
@@ -38,7 +37,7 @@ namespace DoAnCoSo.Controllers
 
         public ActionResult ProductCategory(string alias, int id)
         {
-            var items = db.Products.ToList();
+            var items = db.Products.Where(x => x.isactive == true).ToList();
             if (id > 0)
             {
                 items = items.Where(x => x.productcategoryid == id).ToList();

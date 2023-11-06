@@ -53,8 +53,8 @@
                                 <td>@item.customername</td>
                                 <td>@item.phone</td>
                                 <td>@DoAnCoSo.Common.Common.FormatNumber(item.total, 0)</td>
-@*                                <td>@(item.typepayment == 1? "Chờ thành toán" : "Đã thanh toán")</td>
-*@                                <td>@item.datetime.ToString("dd/MM/yyyy hh:mm:tt")</td>
+                                @*<td>@(item.typepayment == 1? "Chờ thành toán" : "Đã thanh toán")</td>*@
+                                <td>@item.datetime.ToString("dd/MM/yyyy hh:mm:tt")</td>
                                   <td>
                                       <a href="/admin/order/view/@item.id" class="btn btn-sm btn-success">Chi tiết</a>
                                       <a href="/admin/invoice/view/@item.id" class="btn btn-sm btn-success">Lập hóa đơn</a>

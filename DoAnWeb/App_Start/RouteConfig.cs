@@ -44,6 +44,12 @@ namespace DoAnCoSo
                namespaces: new[] { "DoAnCoSo.Controllers" }
             );
             routes.MapRoute(
+                name: "CheckOutShip",
+                url: "thanh-toan-ship",
+                defaults: new { controller = "ShoppingCart", action = "CheckOutShip", alias = UrlParameter.Optional },
+                namespaces: new[] { "DoAnCoSo.Controllers" }
+             );
+            routes.MapRoute(
                 name: "ShoppingCart",
                 url: "gio-hang",
                 defaults: new { controller = "ShoppingCart", action = "Index", alias = UrlParameter.Optional },

@@ -36,8 +36,6 @@
                 </div>
             </div>
 
-
-
             <!-- Main Content -->
 
             <div class="main_content">
@@ -97,7 +95,7 @@
                                         <div id="next_page" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
                                     </div>*@
                             </div>
-                            
+
                         </div>
 
                         <!-- Product Grid -->
@@ -187,5 +185,27 @@
 
 @section scripts{
     <script src="~/Content/assets/js/categories_custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="~/Content/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css"></script>
 
+    <script>
+
+        $(function () {
+            $(".datepicker").datepicker({
+
+                minDate: 'Today +1d',
+                maxDate: "+7d"
+            });
+        });
+
+
+        flatpickr("#datetimepicker", {
+            enableTime: true,
+            minDate: "today",
+            maxDate: new Date().fp_incr(90),
+            time_24hr: true,
+            minDate: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
+            dateFormat: "Y-m-d H:i",// Tính toán ngày tối đa là ngày hiện tại cộng thêm 7 ngày
+        });
+    </script>
 } 

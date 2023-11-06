@@ -3418,6 +3418,7 @@
     <Content Include="Uploads\images\ddd2.1.png" />
     <Content Include="Uploads\images\icon\301233268_188255490260753_241183637665719382_n.jpg" />
     <Content Include="Uploads\images\icon\353068537_211757027918853_4931193201969409622_n.jpg" />
+    <Content Include="Uploads\images\icon\eb9682d45911884fd100.jpg" />
     <Content Include="Uploads\images\icon\images3.jpg" />
     <Content Include="Uploads\images\icon\spm.jpg" />
     <Content Include="Uploads\images\icon\Twitter-logo.svg.png" />
@@ -3487,6 +3488,9 @@
     <Content Include="Views\ShoppingCart\Partial_Item_Table_ThanhToan.cshtml" />
     <Content Include="Views\Comment\Partial_Comment.cshtml" />
     <Content Include="Views\Comment\Partial_AddComment.cshtml" />
+    <Content Include="Views\Tables\Partial_View_Table.cshtml" />
+    <Content Include="Views\ShoppingCart\CheckOutShip.cshtml" />
+    <Content Include="Views\ShoppingCart\Partial_CheckOutShip.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
