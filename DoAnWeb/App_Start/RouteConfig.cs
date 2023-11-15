@@ -76,16 +76,16 @@ namespace DoAnCoSo
             );
             routes.MapRoute(
                  name: "Products",
-                 url: "thuc-donban",
+                 url: "thuc-don",
                  defaults: new { controller = "Products", action = "Index", alias = UrlParameter.Optional },
                  namespaces: new[] { "DoAnCoSo.Controllers" }
             );
-            /* routes.MapRoute(
-                  name: "Products",
-                  url: "thuc-donban",
-                  defaults: new { controller = "Tables", action = "Index", alias = UrlParameter.Optional },
-                  namespaces: new[] { "DoAnCoSo.Controllers" }
-             );*/
+            routes.MapRoute(
+                 name: "Tabless",
+                 url: "ban",
+                 defaults: new { controller = "Tables", action = "Index", alias = UrlParameter.Optional },
+                 namespaces: new[] { "DoAnCoSo.Controllers" }
+            );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

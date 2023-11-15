@@ -30,6 +30,7 @@ namespace DoAnCoSo.Models.EF
         public DateTime datetime { get; set; }
         public string email { get; set; }
         public decimal total { get; set; }
+        public decimal? ship { get; set; } = 0;
         public int quantity { get; set; }
         public int typepayment { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }

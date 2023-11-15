@@ -333,7 +333,8 @@ input[type=date], input[type=datetime-local], input[type=month], input[type=time
 
 textarea {
     overflow: auto;
-    resize: vertical
+    resize: vertical;
+        width: 730px 
 }
 
 fieldset {

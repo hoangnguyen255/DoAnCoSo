@@ -258,6 +258,10 @@
     <Compile Include="Migrations\202306131136103_AddEmployee2.designer.cs">
       <DependentUpon>202306131136103_AddEmployee2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202311120935406_adship.cs" />
+    <Compile Include="Migrations\202311120935406_adship.designer.cs">
+      <DependentUpon>202311120935406_adship.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonAbstracts.cs" />
@@ -3491,6 +3495,7 @@
     <Content Include="Views\Tables\Partial_View_Table.cshtml" />
     <Content Include="Views\ShoppingCart\CheckOutShip.cshtml" />
     <Content Include="Views\ShoppingCart\Partial_CheckOutShip.cshtml" />
+    <Content Include="Views\ShoppingCart\Partial_Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3548,6 +3553,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306131136103_AddEmployee2.resx">
       <DependentUpon>202306131136103_AddEmployee2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202311120935406_adship.resx">
+      <DependentUpon>202311120935406_adship.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

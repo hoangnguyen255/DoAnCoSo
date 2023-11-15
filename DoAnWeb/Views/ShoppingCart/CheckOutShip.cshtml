@@ -5,9 +5,21 @@
     .error {
         color: red;
     }
+    /* Thay đổi kích thước container của bản đồ */
+    #map {
+        height: 400px;
+        width: 100%;
+
+    }
 </style>
 <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/categories_styles.css">
 <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/categories_responsive.css">
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>s
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
+<script src="https://cdn.jsdelivr.net/places.js/1/places.min.js"></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
+
 <div class="container product_section_container">
     <div class="row">
         <div class="col product_section clearfix">
@@ -19,7 +31,9 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="text-center">Đặt bàn</h1>
+                    <h1 class="text-center">
+                        Đặt hàng
+                    </h1>
                 </div>
             </div>
             <hr />
@@ -29,10 +43,10 @@
                 <div class="row">
                     <div id="show_success"></div>
                     <div class="col-md-8">
-                        @Html.Action("Partial_Checkout", "ShoppingCart")
+                        @Html.Action("Partial_CheckOutShip", "ShoppingCart")
                     </div>
-                    <div class="col-md-4">                                   
-                            @Html.Action("Partial_Item_ThanhToan", "ShoppingCart")                     
+                    <div class="col-md-4" id="partialContainer">
+                        @Html.Action("Partial_Item_ThanhToan", "ShoppingCart")
                     </div>
 
                 </div>
@@ -40,7 +54,7 @@
             else
             {
                 <div>
-                    <h5>Vui lòng thêm <a href="/thuc-donban"> món ăn</a> vào giỏ hàng!</h5>
+                    <h5>Vui lòng thêm <a href="/thuc-don"> món ăn</a> vào giỏ hàng!</h5>
                 </div>
             }
 
@@ -49,8 +63,9 @@
 </div>
 @section scripts{
     <script src="~/Content/assets/js/categories_custom.js"></script>
-@*    <script src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.min.js"></script>
-*@    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    @*    <script src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.12.1/jquery-ui.min.js"></script>
+    *@
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="~/Content/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css"></script>
     <script>
         function Onfailure(rs) {
@@ -110,5 +125,68 @@
             minDate: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
             dateFormat: "Y-m-d H:i",// Tính toán ngày tối đa là ngày hiện tại cộng thêm 7 ngày
         });
+    </script>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiaG9hbmcyNTUiLCJhIjoiY2xvbXUzcnh3MmZieTJscWVxeXYwbjF3ciJ9.66Lo0DwiF0o2NxadwVMcaQ'; // Thay YOUR_MAPBOX_ACCESS_TOKEN bằng mã truy cập Mapbox của bạn
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [106.700897, 10.776889], // Tọa độ mặc định (Landmark 81, Hồ Chí Minh)
+            zoom: 6,
+        });
+
+        // Tạo một biểu đồ chỉ đường
+        var directions = new MapboxDirections({
+            accessToken: mapboxgl.accessToken,
+            language: 'vi',
+            unit: 'metric',
+            profile: 'mapbox/driving', // Đặt profile mặc định thành 'mapbox/driving'
+            geocoder: {
+                placeholder: 'Nhập điểm đến',
+                countries: 'VN'
+            },
+            inputControls: {
+                inputs: false,
+                instructions: true,
+            }
+        });
+
+        function findRoute() {
+            var endLocation = document.getElementById("endLocation").value;
+            directions.setOrigin([106.700897, 10.776889]);
+            directions.setDestination(endLocation);
+
+            directions.on('route', function (e) {
+                var route = e.route[0];
+                if (route) {
+                    var distance = route.distance / 1000;
+                    var duration = route.duration / 60;
+                    document.getElementById("distanceInfo").innerHTML = 'Khoảng cách: ' + distance.toFixed(2) + ' km, Thời gian ước tính: ' + duration.toFixed(2) + ' phút';
+                    if (distance.toFixed(2) > 0) {
+                        $.ajax({
+                            url: '/ShoppingCart/SaveDistanceToSession',
+                            method: 'POST',
+                            data: { distance: distance },
+                            success: function (data) {
+                                $.get('/ShoppingCart/UpdateDistancePartial', function (data) {
+                                    $('#partialContainer').html(data);
+                                });
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                            },
+                        });
+                    }
+                } else {
+                    document.getElementById("distanceInfo").innerHTML = 'Không tìm thấy đường đi.';
+                }
+            });
+        }
+
+
+        map.addControl(directions, 'top-left');
+        findRoute();
+        setInterval(findRoute, 3000);
+
     </script>
 }

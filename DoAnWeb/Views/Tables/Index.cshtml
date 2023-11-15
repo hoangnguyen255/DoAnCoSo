@@ -65,6 +65,10 @@
                                             <li class="num_sorting_btn"><span>24</span></li>
                                         </ul>
                                     </li>
+                                    <li>
+                                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+                                        <input type="text" name="datetime" id="datetimepicker" placeholder=" Chọn ngày giờ">
+                                    </li>
                                 </ul>
                                 @*<div class="pages d-flex flex-row align-items-center">
                                         <div class="page_current">
@@ -149,10 +153,44 @@
 
 @section scripts{
     <script src="~/Content/assets/js/categories_custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="~/Content/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css"></script>
+
     <script>
         $(document).on('change', '#datetimepicker', function () {
             var datetime = $(this).val();
             $('.btnAddToCart').attr('data-datetime', datetime);
         });
+        $(function () {
+            $(".datepicker").datepicker({
+
+                minDate: 'Today +1d',
+                maxDate: "+7d"
+            });
+        });
+
+
+        flatpickr("#datetimepicker", {
+            enableTime: true,
+            minDate: "today",
+            maxDate: new Date().fp_incr(90),
+            time_24hr: true,
+            minDate: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
+            dateFormat: "Y-m-d H:i",// Tính toán ngày tối đa là ngày hiện tại cộng thêm 7 ngày
+        });
+        $(function () {
+            $("#datetimepicker").change(function () {
+                // Lấy các giá trị được nhập vào trên form
+                const date = document.getElementById("datetimepicker").value;
+                $.ajax({
+                    url: "/Tables/Partial_View_Table",
+                    type: "POST",
+                    data: { date: date },
+                    success: function (data) {
+                        $('.product-grid').html(data);
+                    },
+                });
+            });
+        })
     </script>
 } 

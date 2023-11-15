@@ -62,6 +62,11 @@ namespace DoAnCoSo.Controllers
         {
             return PartialView();
         }
+        
+        public ActionResult Partial_Map()
+        {
+            return PartialView();
+        }
 
         public ActionResult Partial_CheckOutShip()
         {
@@ -69,15 +74,66 @@ namespace DoAnCoSo.Controllers
         }
         public ActionResult Partial_Item_ThanhToan()
         {
-
-            ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            // chua xu ly 
+            try {
+                double distance = Convert.ToDouble(Session["Distance"]);
+            }
+            catch { }
+            //================
+                ShoppingCart cart = (ShoppingCart)Session["Cart"];
             if (cart != null && cart.items.Any())
             {
-                return PartialView(cart.items);
+                  return PartialView(cart.items);
             }
 
             return PartialView();
+            //if (distance != null && distance > 0)
+            //{
+            //    ShoppingCart cart = (ShoppingCart)Session["Cart"];
+            //    double delivery = 0;
+            //    if (distance <= 5)
+            //    {
+            //        delivery = 15000;
+
+            //    }
+            //    else
+            //    {
+            //        delivery = (delivery - 5) * 3000 + 15000;
+            //    }
+            //    if (cart != null && cart.items.Any())
+            //    {
+            //        return PartialView(cart.items);
+            //    }
+
+            //    return PartialView();
+            //}
         }
+        public ActionResult UpdateDistancePartial()
+        {
+            try
+            {
+                double distance = Convert.ToDouble(Session["Distance"]);
+            }
+            catch { }
+
+            ShoppingCart cart = (ShoppingCart)Session["Cart"];
+
+            if (cart != null && cart.items.Any())
+            {
+                return PartialView("Partial_Item_ThanhToan", cart.items);
+            }
+
+            return PartialView("Partial_Item_ThanhToan");
+        }
+
+        [HttpPost]
+        public ActionResult SaveDistanceToSession(double distance)
+        {
+            Session["Distance"] = distance;
+            return Json(new { success = true });
+        }
+
+
         /*   public ActionResult Partial_Item_Table_ThanhToan()
            {
 
@@ -150,8 +206,24 @@ namespace DoAnCoSo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CheckOutShip(OrderViewModel req)
         {
+            
             var code = new { Success = false, Code = -1 };
-            if (!ModelState.IsValid)
+            double delivery = 0;
+            try
+            {
+                var distance = Convert.ToDouble(Session["Distance"]);
+                if(distance > 0 && distance<= 5)
+                {
+                    delivery = 15000;
+                }
+                else if(distance>5) 
+                {
+                    delivery = (distance - 5) * 3000 + 15000;
+                }
+
+            }
+            catch { }
+            if (req !=null)
             {
                 ShoppingCart cart = (ShoppingCart)Session["Cart"];
                 if (cart != null)
@@ -161,6 +233,7 @@ namespace DoAnCoSo.Controllers
                     order.phone = req.phone;
                     order.address = req.address;
                     order.email = req.email;
+                    order.datetime = req.datetime;
                     cart.items.ForEach(x => order.OrderDetails.Add(new OrderDetail
                     {
                         productid = x.ProductId,
@@ -174,6 +247,7 @@ namespace DoAnCoSo.Controllers
                     order.createdby = req.phone;
                     Random rd = new Random();
                     order.code = "DDB" + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9) + rd.Next(0, 9);
+                    order.ship = decimal.Parse(delivery.ToString());
 
                     db.Orders.Add(order);
                     db.SaveChanges();
@@ -193,7 +267,7 @@ namespace DoAnCoSo.Controllers
                         thanhtien += sp.Price * sp.Quantity;
                     }
 
-                    TongTien = thanhtien;
+                    TongTien = thanhtien + decimal.Parse(delivery.ToString());
                     string contentCustomer = System.IO.File.ReadAllText(Server.MapPath("~/Content/templates/send2.html"));
                     contentCustomer = contentCustomer.Replace("{{MaDon}}", order.code);
                     contentCustomer = contentCustomer.Replace("{{SanPham}}", strSanPham);
@@ -235,8 +309,8 @@ namespace DoAnCoSo.Controllers
                 ShoppingCart cart = (ShoppingCart)Session["Cart"];
                 ShoppingCart carttable = (ShoppingCart)Session["CartTable"];
                 var time = HttpContext.Session["TimeTable"] as DateTime?;
-                if (carttable != null)
-                {
+                //if (carttable != null)
+                //{
                     Order order = new Order();
                     order.customername = req.customername;
                     order.phone = req.phone;
@@ -339,7 +413,7 @@ namespace DoAnCoSo.Controllers
                     }
                     carttable.clearCart();
                     return Json("CheckOutSuccess");
-                }
+                //}
             }
 
             return Json(code);

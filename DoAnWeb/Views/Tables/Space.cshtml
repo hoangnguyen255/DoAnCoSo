@@ -27,12 +27,6 @@
             <div class="sidebar">
                 <div class="sidebar_section">
                     <div class="sidebar_title">
-                        <h5>Danh mục món ăn</h5>
-                    </div>
-                    @Html.Action("MenuLeft", "Menu", new { id = ViewBag.CateId })
-                </div>
-                <div class="sidebar_section">
-                    <div class="sidebar_title">
                         <h5>Danh mục bàn</h5>
                     </div>
                     @Html.Action("MenuLeftTable", "Menu", new { id = ViewBag.CateId })
@@ -90,29 +84,30 @@
                                         <div id="next_page" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
                                     </div>*@
                             </div>
-                        </div>
-                        <!-- Product Grid -->
-                        <div class="product-grid">
-                            @Html.Action("Partial_View_Table", "Tables")
-                        </div>
 
-                        <!-- Product Sorting -->
-                        @* <div class="product_sorting_container product_sorting_container_bottom clearfix">
-                                <ul class="product_sorting">
-                                    <li>
-                                        <span>Show:</span>
-                                        <span class="num_sorting_text">04</span>
-                                        <i class="fa fa-angle-down"></i>
-                                        <ul class="sorting_num">
-                                            <li class="num_sorting_btn"><span>01</span></li>
-                                            <li class="num_sorting_btn"><span>02</span></li>
-                                            <li class="num_sorting_btn"><span>03</span></li>
-                                            <li class="num_sorting_btn"><span>04</span></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>*@
+                            <!-- Product Grid -->
+                            <div class="product-grid">
 
+                                @Html.Action("Partial_View_Table", "Tables")
+                            </div>
+
+                            <!-- Product Sorting -->
+                            @* <div class="product_sorting_container product_sorting_container_bottom clearfix">
+                                    <ul class="product_sorting">
+                                        <li>
+                                            <span>Show:</span>
+                                            <span class="num_sorting_text">04</span>
+                                            <i class="fa fa-angle-down"></i>
+                                            <ul class="sorting_num">
+                                                <li class="num_sorting_btn"><span>01</span></li>
+                                                <li class="num_sorting_btn"><span>02</span></li>
+                                                <li class="num_sorting_btn"><span>03</span></li>
+                                                <li class="num_sorting_btn"><span>04</span></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>*@
+                        </div>
                     </div>
                 </div>
             </div>

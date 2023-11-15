@@ -35,8 +35,12 @@
                         <th>Tên Khách hàng</th>
                         <th>Số điện thoại</th>
                         <th>Tiền</th>
-@*                        <th>Trạng thái</th>
-*@                        <th>Ngày đặt bàn</th>
+                        <th>Ship</th>
+                        <th>Tổng tiền</th>
+
+                        @*                        <th>Trạng thái</th>
+                        *@
+                        <th>Ngày đặt bàn</th>
                         <th>Chức năng</th>
                     </tr>
                 </thead>
@@ -53,12 +57,14 @@
                                 <td>@item.customername</td>
                                 <td>@item.phone</td>
                                 <td>@DoAnCoSo.Common.Common.FormatNumber(item.total, 0)</td>
+                                <td>@DoAnCoSo.Common.Common.FormatNumber(item.ship, 0)</td>
+                                <td>@DoAnCoSo.Common.Common.FormatNumber(item.total+item.ship, 0)</td>
                                 @*<td>@(item.typepayment == 1? "Chờ thành toán" : "Đã thanh toán")</td>*@
                                 <td>@item.datetime.ToString("dd/MM/yyyy hh:mm:tt")</td>
-                                  <td>
-                                      <a href="/admin/order/view/@item.id" class="btn btn-sm btn-success">Chi tiết</a>
-                                      <a href="/admin/invoice/view/@item.id" class="btn btn-sm btn-success">Lập hóa đơn</a>
-                                  </td>
+                                <td>
+                                    <a href="/admin/order/view/@item.id" class="btn btn-sm btn-success">Chi tiết</a>
+                                    <a href="/admin/invoice/view/@item.id" class="btn btn-sm btn-success">Lập hóa đơn</a>
+                                </td>
                             </tr>
                             i++;
                         }

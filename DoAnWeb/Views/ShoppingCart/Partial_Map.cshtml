@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Tìm Đường Từ Landmark 81</title>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://cdn.jsdelivr.net/places.js/1/places.min.js"></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
+
+    <style>
+        /* Thay đổi kích thước container của bản đồ */
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tìm Đường Từ Landmark 81</h1>
+    <div id="map"></div>
+
+    <label for="endLocation">Điểm Đến:</label>
+    <input type="text" id="endLocation" placeholder="Nhập điểm đến">
+    <button onclick="findRoute()">Tìm Đường</button>
+    <p id="distanceInfo"></p>
+
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoiaG9hbmcyNTUiLCJhIjoiY2xvbXUzcnh3MmZieTJscWVxeXYwbjF3ciJ9.66Lo0DwiF0o2NxadwVMcaQ'; // Thay YOUR_MAPBOX_ACCESS_TOKEN bằng mã truy cập Mapbox của bạn
+
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [106.700897, 10.776889], // Tọa độ mặc định (Landmark 81, Hồ Chí Minh)
+            zoom: 6,
+        });
+
+        // Tạo một biểu đồ chỉ đường
+        var directions = new MapboxDirections({
+            accessToken: mapboxgl.accessToken,
+            language: 'vi', // Đặt ngôn ngữ là tiếng Việt
+            unit: 'metric', // Đặt đơn vị đo lường là mét
+            profile: 'mapbox/driving', // Sử dụng profile 'mapbox/driving'
+            geocoder: {
+                placeholder: 'Nhập điểm đến',
+                countries: 'VN' // Giới hạn tìm kiếm trong Việt Nam
+            },
+            inputControls: {
+                inputs: false, // Ẩn ô chọn điểm xuất phát
+                instructions: true, // Hiển thị hướng dẫn
+            }
+        });
+
+
+        function findRoute() {
+            var endLocation = document.getElementById("endLocation").value;
+            directions.setOrigin([106.700897, 10.776889]); // Điểm xuất phát là Landmark 81
+            directions.setDestination(endLocation);
+
+            directions.on('route', function (e) {
+                var route = e.route[0];
+                var distance = route.distance / 1000; // Chuyển từ mét sang kilômét
+                var duration = route.duration / 60; // Chuyển từ giây sang phút
+                document.getElementById("distanceInfo").innerHTML = 'Khoảng cách: ' + distance.toFixed(2) + ' km, Thời gian ước tính: ' + duration.toFixed(2) + ' phút';
+            });
+        }
+
+        // Thêm biểu đồ chỉ đường vào bản đồ
+        map.addControl(directions, 'top-left');
+    </script>
+</body>
+</html>

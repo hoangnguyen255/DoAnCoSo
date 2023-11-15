@@ -15,7 +15,7 @@ namespace DoAnCoSo.Models
         [Required(ErrorMessage = "Địa chỉ không được để trống")]
         public string address { get; set; }
         [Required(ErrorMessage = "Ngày đặt bàn không được để trống")]
-        public DateTime datetime { get; set; }
+        public DateTime datetime { get; set; } = DateTime.Now;
         public string email { get; set; }
         public int typepayment { get; set; }
 
