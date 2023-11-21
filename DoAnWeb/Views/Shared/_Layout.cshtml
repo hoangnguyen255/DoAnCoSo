@@ -48,29 +48,29 @@
 
                                     <!-- Currency / Language / My Account -->
                                     @*<li class="currency">
-                <a href="#">
-                    usd
-                    <i class="fa fa-angle-down"></i>
-                </a>
-                <ul class="currency_selection">
-                    <li><a href="#">cad</a></li>
-                    <li><a href="#">aud</a></li>
-                    <li><a href="#">eur</a></li>
-                    <li><a href="#">gbp</a></li>
-                </ul>
-            </li>
-            <li class="language">
-                <a href="#">
-                    English
-                    <i class="fa fa-angle-down"></i>
-                </a>
-                <ul class="language_selection">
-                    <li><a href="#">French</a></li>
-                    <li><a href="#">Italian</a></li>
-                    <li><a href="#">German</a></li>
-                    <li><a href="#">Spanish</a></li>
-                </ul>
-            </li>*@
+                                        <a href="#">
+                                            usd
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="currency_selection">
+                                            <li><a href="#">cad</a></li>
+                                            <li><a href="#">aud</a></li>
+                                            <li><a href="#">eur</a></li>
+                                            <li><a href="#">gbp</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="language">
+                                        <a href="#">
+                                            English
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="language_selection">
+                                            <li><a href="#">French</a></li>
+                                            <li><a href="#">Italian</a></li>
+                                            <li><a href="#">German</a></li>
+                                            <li><a href="#">Spanish</a></li>
+                                        </ul>
+                                    </li>*@
                                     <li class="account">
                                         @if (!Request.IsAuthenticated)
                                         {
@@ -123,7 +123,7 @@
                                 <ul class="navbar_user">
 
                                     <li>
-                                 @*   <li>
+                                        @*   <li>
                                         @using (Html.BeginForm("Index", "Products", FormMethod.Get, new { }))
                                         {
                                             <div class="input-group input-group-sm">
@@ -133,10 +133,10 @@
                                                 </span>
                                             </div>
                                         }*@
-                                    @*</li>
-                                    <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                    </li>*@
-                                    @*<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>*@
+                                        @*</li>
+                                        <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                        </li>*@
+                                        @*<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>*@
                                     <li class="checkout">
                                         <a href="/gio-hang">
                                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
@@ -208,13 +208,21 @@
         @Html.Action("Partial_Subcrice", "Home")
 
         <!-- Footer -->
-
+        <div class="float-contact">
+            <div class="chat-facebook">
+                <a href="https://m.me/100011308278932" target="_blank"><img title="Chat Facebook" src="~/Uploads/images/icon/icons8-messenger-48.png" alt="facebook-icon" width="40" height="40" /></a>
+            </div>
+            <div class="chat-zalo">
+                <a href="https://zalo.me/0946786967" target="_blank"><img title="Chat Zalo" src="~/Uploads/images/icon/icons8-zalo-48.png" alt="zalo-icon" width="40" height="40" /></a>
+            </div>
+        </div>
         <footer class="footer">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
                             <ul class="footer_nav">
+
                                 <li><a href="#">Blog</a></li>
                                 <li><a href="#">FAQs</a></li>
                                 <li><a href="contact.html">Contact us</a></li>
@@ -246,6 +254,8 @@
     </div>
 
     @*@Scripts.Render("~/bundles/jquery")*@
+    <script type="text/javascript" src="https://web.cmbliss.com/webtools/hotline/js/hotline.js"></script>
+    <script type="text/javascript">$("body").hotline({ phone: "0946786967", p_bottom: true, bottom: 0, p_left: true, left: 0, bg_color: "#e60808", abg_color: "rgba(230, 8, 8, 0.7)", show_bar: true, position: "fixed", });</script>
     <script src="~/Content/assets/astyles/bootstrap4/popper.js"></script>
     <script src="~/Content/assets/styles/bootstrap4/bootstrap.min.js"></script>
     <script src="~/Content/assets/plugins/Isotope/isotope.pkgd.min.js"></script>
