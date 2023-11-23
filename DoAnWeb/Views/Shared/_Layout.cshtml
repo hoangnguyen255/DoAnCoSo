@@ -48,29 +48,29 @@
 
                                     <!-- Currency / Language / My Account -->
                                     @*<li class="currency">
-                                        <a href="#">
-                                            usd
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <ul class="currency_selection">
-                                            <li><a href="#">cad</a></li>
-                                            <li><a href="#">aud</a></li>
-                                            <li><a href="#">eur</a></li>
-                                            <li><a href="#">gbp</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="language">
-                                        <a href="#">
-                                            English
-                                            <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <ul class="language_selection">
-                                            <li><a href="#">French</a></li>
-                                            <li><a href="#">Italian</a></li>
-                                            <li><a href="#">German</a></li>
-                                            <li><a href="#">Spanish</a></li>
-                                        </ul>
-                                    </li>*@
+                                            <a href="#">
+                                                usd
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <ul class="currency_selection">
+                                                <li><a href="#">cad</a></li>
+                                                <li><a href="#">aud</a></li>
+                                                <li><a href="#">eur</a></li>
+                                                <li><a href="#">gbp</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="language">
+                                            <a href="#">
+                                                English
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <ul class="language_selection">
+                                                <li><a href="#">French</a></li>
+                                                <li><a href="#">Italian</a></li>
+                                                <li><a href="#">German</a></li>
+                                                <li><a href="#">Spanish</a></li>
+                                            </ul>
+                                        </li>*@
                                     <li class="account">
                                         @if (!Request.IsAuthenticated)
                                         {
@@ -124,18 +124,18 @@
 
                                     <li>
                                         @*   <li>
-                                        @using (Html.BeginForm("Index", "Products", FormMethod.Get, new { }))
-                                        {
-                                            <div class="input-group input-group-sm">
-                                                @Html.TextBox("SearchText")
-                                                <span class="input-group-append">
-                                                    <button type="submit" class="fa fa-search"aria-hidden="true"></button>
-                                                </span>
-                                            </div>
-                                        }*@
+                                            @using (Html.BeginForm("Index", "Products", FormMethod.Get, new { }))
+                                            {
+                                                <div class="input-group input-group-sm">
+                                                    @Html.TextBox("SearchText")
+                                                    <span class="input-group-append">
+                                                        <button type="submit" class="fa fa-search"aria-hidden="true"></button>
+                                                    </span>
+                                                </div>
+                                            }*@
                                         @*</li>
-                                        <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
-                                        </li>*@
+                                            <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+                                            </li>*@
                                         @*<li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>*@
                                     <li class="checkout">
                                         <a href="/gio-hang">
@@ -208,7 +208,7 @@
         @Html.Action("Partial_Subcrice", "Home")
 
         <!-- Footer -->
- 
+
         <footer class="footer">
             <div class="container">
                 <div class="row">
@@ -242,12 +242,14 @@
                 </div>
             </div>
         </footer>
+        <div class="zalo-chat-widget" style="bottom: 90px; left: 29px;", data-oaid="1417344681825631378" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="" data-height=""></div>
 
     </div>
 
     @*@Scripts.Render("~/bundles/jquery")*@
+    <script src="https://sp.zalo.me/plugins/sdk.js"></script>
     <script type="text/javascript" src="https://web.cmbliss.com/webtools/hotline/js/hotline.js"></script>
-    <script type="text/javascript">$("body").hotline({ phone: "0946786967", p_bottom: true, bottom: 0, p_left: true, left: 0, bg_color: "#e60808", abg_color: "rgba(230, 8, 8, 0.7)", show_bar: true, position: "fixed", });</script>
+    <script type="text/javascript">$("body").hotline({ phone: "0946786967", p_bottom: true, bottom: 25, p_left: true, left: 1250, bg_color: "#e60808", abg_color: "rgba(230, 8, 8, 0.7)", show_bar: true, position: "fixed", });</script>
     <script src="~/Content/assets/astyles/bootstrap4/popper.js"></script>
     <script src="~/Content/assets/styles/bootstrap4/bootstrap.min.js"></script>
     <script src="~/Content/assets/plugins/Isotope/isotope.pkgd.min.js"></script>
