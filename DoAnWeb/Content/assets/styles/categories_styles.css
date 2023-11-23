@@ -1356,6 +1356,7 @@ section
 .product_name
 {
 	margin-top: 27px;
+	text-align:inherit;
 }
 .product_name a
 {

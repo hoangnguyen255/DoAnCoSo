@@ -3,10 +3,17 @@
 @if (Model != null && Model.Any())
 {
     <div class="banner">
+        <div class="row">
+            <div class="col text-center">
+                <div class="section_title new_arrivals_title" style="margin-top: 76px; margin-bottom: 50px;">
+                    <h2>LOẠI MÓN ĂN</h2>
+                </div>
+            </div>
+        </div>
         <div class="container">
             <div class="row">
                 @foreach (var item in Model)
-                 {
+                {
                     <div class="col-md-4">
                         <div class="banner_item align-items-center" style="background-image:url(@item.icon)">
                             <div class="banner_category">

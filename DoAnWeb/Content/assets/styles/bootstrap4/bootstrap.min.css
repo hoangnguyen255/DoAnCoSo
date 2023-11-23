@@ -425,6 +425,7 @@ template {
 .h6, h6 {
     font-size: 1rem;
     color: black;
+    text-align:justify;
 }
 
 .lead {

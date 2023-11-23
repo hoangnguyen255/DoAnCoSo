@@ -3498,6 +3498,7 @@
     <Content Include="Views\ShoppingCart\CheckOutShip.cshtml" />
     <Content Include="Views\ShoppingCart\Partial_CheckOutShip.cshtml" />
     <Content Include="Views\ShoppingCart\Partial_Map.cshtml" />
+    <Content Include="Views\Menu\_MenuCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

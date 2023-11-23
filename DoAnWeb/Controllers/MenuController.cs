@@ -25,6 +25,10 @@ namespace DoAnCoSo.Controllers
             var items = db.ProductCategories.ToList();
             return PartialView("_MenuProductCategory", items);
         }
+        public ActionResult MenuCategory()
+        {
+            return PartialView("_MenuCategory");
+        }
         public ActionResult MenuLeft(int? id)
         {
             if (id != null)
