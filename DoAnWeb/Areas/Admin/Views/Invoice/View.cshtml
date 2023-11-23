@@ -24,11 +24,17 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
+            <h1 style="margin-left: 450px">HÓA ĐƠN</h1>
 
             @*<h3 class="card-title">Chi tiết hóa đơn</h3>*@
         </div>
         <div class="card-body">
+            <div class="invoice-header">
 
+                <p>Mã hóa đơn: @Model.code </p>
+                <p>Khách hàng: @Model.customername </p>
+                <p>Ngày đặt  : @Model.datetime</p>
+            </div>
             <div class="row">
 
                 <div class="col-12">
@@ -36,13 +42,15 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Tổng tiền: @DoAnCoSo.Common.Common.FormatNumber(Model.total, 0) đ</label>
+                <div class="col-md-12">
+                    <div class="form-group" style="margin-left: 790px;">
+                        <label><th>Tổng tiền:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @DoAnCoSo.Common.Common.FormatNumber(Model.total, 0) đ</th></label>
 
                     </div>
                 </div>
             </div>
+            <button onclick="printInvoice()">In hóa đơn</button>
+
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
@@ -54,3 +62,25 @@
 
 </section>
 <!-- /.content -->
+<script>
+    function printInvoice() {
+        // Lấy phần tử chứa nội dung hóa đơn
+        var invoiceElement = document.querySelector('.invoice');
+        // Thay thế bằng đường dẫn đúng
+        // Chuyển hướng đến trang in
+
+        // Áp dụng CSS stylesheet cho trang in
+        var stylesheets = document.querySelectorAll('style');
+        stylesheets.forEach(function (stylesheet) {
+            document.head.appendChild(stylesheet.cloneNode(true));
+        });
+
+        // In trang
+        window.print();
+
+        // Xóa CSS stylesheet sau khi in
+        stylesheets.forEach(function (stylesheet) {
+            document.head.removeChild(stylesheet);
+        });
+    }
+</script>
