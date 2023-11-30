@@ -1,4 +1,5 @@
 ﻿using DoAnCoSo.Models;
+using DoAnCoSo.Models.EF;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
@@ -39,32 +40,45 @@ namespace DoAnCoSo.Controllers
             return View(items);
         }
 
-        public ActionResult Partial_View_Table(DateTime ?date)
+        public ActionResult Partial_View_Table(DateTime ?date, int id)
         {
+
+            var lstable = new List< TableViewModel>();
             var listtables = db.Tables.ToList();
+            var cate = db.Spaces.Find(id);
             if (date == null)
             {
                 return PartialView(null);
             }
+            
             var dateMinus5Hours = date.Value.AddHours(-4);
             var datePlus5Hours = date.Value.AddHours(4);
             var listtablesold = db.Tables.ToList();
             var listorderdetail = db.OrderDetails.Where(x => x.Order.datetime >= dateMinus5Hours && x.Order.datetime <= datePlus5Hours).ToList();
-
+            
             foreach (var table in listtables)
             {
+               
+                int t = 0;
                 foreach (var orderdetail in listorderdetail)
                 {
                     if (table.id == orderdetail.tableid)
                     {
+                        t = 1;
                         listtablesold.Remove(table);
-                    }
+                    }               
+                }
+                if(t == 1)
+                {
+                    lstable.Add(new TableViewModel { table = table, isActive = false });
+                }
+                else
+                {
+                    lstable.Add(new TableViewModel { table = table, isActive = true });
                 }
             }
-            return PartialView(listtablesold);
+            //return PartialView(listtablesold);
+            return PartialView(lstable);
         }
-
-
     }
-
 }

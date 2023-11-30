@@ -285,6 +285,7 @@
     <Compile Include="Models\EF\ProductImage.cs" />
     <Compile Include="Models\EF\Subscribe.cs" />
     <Compile Include="Models\EF\Systemsetting.cs" />
+    <Compile Include="Models\EF\TableViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
@@ -3426,8 +3427,14 @@
     <Content Include="Uploads\images\icon\icons8-messenger-48.png" />
     <Content Include="Uploads\images\icon\icons8-zalo-48.png" />
     <Content Include="Uploads\images\icon\images3.jpg" />
+    <Content Include="Uploads\images\img-4.png" />
     <Content Include="Uploads\images\icon\spm.jpg" />
     <Content Include="Uploads\images\icon\Twitter-logo.svg.png" />
+    <Content Include="Uploads\images\img-1.png" />
+    <Content Include="Uploads\images\img-2.png" />
+    <Content Include="Uploads\images\img-3.png" />
+    <Content Include="Uploads\images\img-5.png" />
+    <Content Include="Uploads\images\mau-nha-hang-5-tang-thuy-khue-bt14413-5_auto_x2_auto_x2 %281%29.jpg" />
     <Content Include="Uploads\_thumbs\Files\3x3.png" />
     <Content Include="Uploads\_thumbs\Files\user-2.png" />
     <Content Include="Uploads\_thumbs\Images\244957420_606189827064944_6014436531673195615_n.jpg" />

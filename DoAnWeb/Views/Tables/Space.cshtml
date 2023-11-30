@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DoAnCoSo.Models.EF.Table>
+﻿    @model IEnumerable<DoAnCoSo.Models.EF.Table>
 
 @{
     ViewBag.Title = "Danh sách sản phẩm";
@@ -47,7 +47,7 @@
 
                             <div class="product_sorting_container product_sorting_container_top">
                                 <ul class="product_sorting">
-                                    <li>
+                                   @* <li>
                                         <span class="type_sorting_text">Mặc định</span>
                                         <i class="fa fa-angle-down"></i>
                                         <ul class="sorting_type">
@@ -65,8 +65,8 @@
                                             <li class="num_sorting_btn"><span>12</span></li>
                                             <li class="num_sorting_btn"><span>24</span></li>
                                         </ul>
-                                    </li>
-                                    <li>
+                                    </li>*@
+                                    <li style="width: 100px; padding-left:0px;">
                                         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
                                         <input type="text" name="datetime" id="datetimepicker" placeholder=" Chọn ngày giờ">
                                     </li>
@@ -86,7 +86,7 @@
                             </div>
 
                             <!-- Product Grid -->
-                            <div class="product-grid">
+                            <div class="table-grid">
 
                                 @Html.Action("Partial_View_Table", "Tables")
                             </div>
@@ -148,7 +148,7 @@
                     type: "POST",
                     data: { date: date },
                     success: function (data) {
-                        $('.product-grid').html(data);
+                        $('.table-grid').html(data);
                     },
                 });
             });
