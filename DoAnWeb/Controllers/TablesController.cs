@@ -38,47 +38,64 @@ namespace DoAnCoSo.Controllers
             }
             ViewBag.CateId = id;
             return View(items);
+
         }
 
-        public ActionResult Partial_View_Table(DateTime ?date, int id)
+        public ActionResult Partial_View_Table(DateTime ?date, int ?id)
         {
+            if (id != null)
+            {
+                Session["Table"] = id;
 
+            }
+            var _id = (int)Session["Table"];
+            var cate = db.Spaces.Find(_id);
             var lstable = new List< TableViewModel>();
             var listtables = db.Tables.ToList();
-            var cate = db.Spaces.Find(id);
-            if (date == null)
+            var listorderdetail = new List<OrderDetail>();
+            if (_id != null)
             {
-                return PartialView(null);
+                listtables = listtables.Where(x => x.spaceid == _id).ToList();
             }
-            
-            var dateMinus5Hours = date.Value.AddHours(-4);
-            var datePlus5Hours = date.Value.AddHours(4);
-            var listtablesold = db.Tables.ToList();
-            var listorderdetail = db.OrderDetails.Where(x => x.Order.datetime >= dateMinus5Hours && x.Order.datetime <= datePlus5Hours).ToList();
-            
+            if(date != null)
+            {
+                var dateMinus5Hours = date.Value.AddHours(-4);
+                var datePlus5Hours = date.Value.AddHours(4);
+                /*            var listtablesold = db.Tables.ToList();
+                */
+                listorderdetail = db.OrderDetails.Where(x => x.Order.datetime >= dateMinus5Hours && x.Order.datetime <= datePlus5Hours).ToList();
+            }
+         
+
             foreach (var table in listtables)
             {
-               
                 int t = 0;
                 foreach (var orderdetail in listorderdetail)
                 {
                     if (table.id == orderdetail.tableid)
                     {
                         t = 1;
-                        listtablesold.Remove(table);
-                    }               
+/*                        listtablesold.Remove(table);
+*/                    }
+                   
                 }
                 if(t == 1)
                 {
                     lstable.Add(new TableViewModel { table = table, isActive = false });
+
                 }
                 else
                 {
                     lstable.Add(new TableViewModel { table = table, isActive = true });
+
                 }
+
             }
             //return PartialView(listtablesold);
             return PartialView(lstable);
         }
+
+
     }
+
 }

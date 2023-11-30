@@ -19,28 +19,33 @@
                         <td><h5>@Common.FormatNumber(item.Price, 0)</h5></td>
                     </tr>
                 }
-                <tr>
-
-                    @if (distance != null && distance > 0 && distance <= 5)
+            <tr>
+            <tr>
+                <td><h5>Khoảng cách: </h5></td>
+                <td><h5> @distance Km</h5></td>
+            </tr>
+                @if (distance != null && distance > 0 && distance <= 5)
+                {
+                    var _delivery = @Common.FormatNumber(delivery + 15000, 0);
+                   
+                    <td><h5>Phí Ship: </h5></td>
+                    <td><h5> @_delivery VND</h5></td>
+                    sum = _delivery;
+                }
+                else
+                {
+                    if (distance != null & distance > 5)
                     {
-                        var _delivery = @Common.FormatNumber(delivery + 15000, 0);
-                        <td><h5>Phí Ship: </h5></td>
+                        var _delivery = @Common.FormatNumber(((distance - 5) * 3000 + 15000), 0);
+                     
+                        <td><h5>Phí Ship:   </h5></td>
                         <td><h5> @_delivery VND</h5></td>
                         sum = _delivery;
-                    }
-                    else
-                    {
-                        if (distance != null & distance > 5)
-                        {
-                            var _delivery = @Common.FormatNumber(((distance - 5) * 3000 + 15000), 0);
-                            <td><h5>Phí Ship:   </h5></td>
-                            <td><h5> @_delivery VND</h5></td>
-                            sum = _delivery;
-
-                        }
 
                     }
-                </tr>
+
+                }
+            </tr>
                 <tr>
                     <td><h5>Thành tiền</h5></td>
                     <td><h5>@Common.FormatNumber(tongtien + decimal.Parse(sum), 0) VND</h5></td>

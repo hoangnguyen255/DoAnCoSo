@@ -143,10 +143,11 @@
             $("#datetimepicker").change(function () {
                 // Lấy các giá trị được nhập vào trên form
                 const date = document.getElementById("datetimepicker").value;
+                const id = document.getElementById("space").value;
                 $.ajax({
                     url: "/Tables/Partial_View_Table",
                     type: "POST",
-                    data: { date: date },
+                    data: { date: date, id:id},
                     success: function (data) {
                         $('.table-grid').html(data);
                     },
