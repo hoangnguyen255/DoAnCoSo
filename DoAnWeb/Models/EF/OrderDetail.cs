@@ -24,5 +24,7 @@ namespace DoAnCoSo.Models.EF
         public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
         public virtual Table Table { get; set; }
+        public virtual Space Space { get; set; }
+
     }
 }

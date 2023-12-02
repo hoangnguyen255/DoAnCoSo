@@ -1,7 +1,7 @@
 ﻿@model PagedList.IPagedList<DoAnCoSo.Models.EF.Order>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "Danh sách đơn đặt bàn";
+    ViewBag.Title = "Danh sách đơn hàng";
 }
 @section naviheader{
     <!-- Left navbar links -->
@@ -13,18 +13,17 @@
             <a href="/admin" class="nav-link">Trang chủ</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="/admin/order" class="nav-link">Danh sách đơn đặt bàn</a>
+            <a href="/admin/order" class="nav-link">Danh sách đơn hàng</a>
         </li>
     </ul>
 }
 
 <!-- Main content -->
 <section class="content">
-
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Danh sách đặt bàn</h3>
+            <h3 class="card-title">Danh sách đơn hàng</h3>
         </div>
         <div class="card-body">
             <table class="table table-bordered">
@@ -34,36 +33,40 @@
                         <th>Mã đơn hàng</th>
                         <th>Tên Khách hàng</th>
                         <th>Số điện thoại</th>
-                        <th>Tổng Tiền</th>
-                        @*                        <th>Trạng thái</th>
-                        *@
+                        <th>Tiền</th>
+                        <th>Ship</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>                       
                         <th>Ngày đặt bàn</th>
                         <th>Chức năng</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     @if (Model != null && Model.Any())
                     {
-                        var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
+                        var a = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
                         foreach (var item in Model)
                         {
-                            if (item.ship == 0)
+                            if (item.ship != 0)
                             {
                             <tr>
-                                <td>@i</td>
+                                <td>@a</td>
                                 <td>@item.code</td>
                                 <td>@item.customername</td>
                                 <td>@item.phone</td>
-                                <td>@DoAnCoSo.Common.Common.FormatNumber(item.total, 0)</td>                              
+                                <td>@DoAnCoSo.Common.Common.FormatNumber(item.total, 0)</td>
+                                <td>@DoAnCoSo.Common.Common.FormatNumber(item.ship, 0)</td>
+                                <td>@DoAnCoSo.Common.Common.FormatNumber(item.total + item.ship, 0)</td>
+                                <td>@(item.typepayment == 1 ? "Chờ thành toán" : "Đã thanh toán")</td>
                                 <td>@item.datetime.ToString("dd/MM/yyyy hh:mm:tt")</td>
                                 <td>
-                                    <a href="/admin/order/view/@item.id" class="btn btn-sm btn-success">Chi tiết</a>
+                                    <a href="/admin/ordership/view/@item.id" class="btn btn-sm btn-success">Chi tiết</a>
+                                    <a href="#" class="btn btn-sm btn-danger btnCapNhat" data-id="@item.id">Cập nhật</a>
                                     <a href="/admin/invoice/view/@item.id" class="btn btn-sm btn-success">Lập hóa đơn</a>
                                 </td>
                             </tr>
                             }
-                                i++;                           
+                            a++;
                         }
                     }
                 </tbody>

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace DoAnCoSo.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class OrderController : Controller
+    public class OrderShipController : Controller
     {
 
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -27,23 +27,7 @@ namespace DoAnCoSo.Areas.Admin.Controllers
             ViewBag.PageSize = pageSize;
             ViewBag.Page = pageNumber;
             return View(items.ToPagedList(pageNumber, pageSize));
-        }
-        public ActionResult IndexShip(int? page)
-        {
-            var items = db.Orders.OrderByDescending(x => x.createddate).ToList();
-           
-            if (page == null)
-            {
-                page = 1;
-            }
-            var pageNumber = page ?? 1;
-            var pageSize = 10;
-            ViewBag.PageSize = pageSize;
-            ViewBag.Page = pageNumber;
-            return View(items.ToPagedList(pageNumber, pageSize));
-        }
-
-
+        }  
         public ActionResult View(int id)
         {
             var item = db.Orders.Find(id);
