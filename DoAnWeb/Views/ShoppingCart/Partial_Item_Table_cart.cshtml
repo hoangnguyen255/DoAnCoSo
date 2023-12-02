@@ -3,11 +3,11 @@
 <table class="table">
     <tr class="text-center">
         <th>STT</th>
-        <th>Ảnh không gian</th>
+        <th>Ảnh bàn</th>
         <th>Tên bàn/không gian</th>
         <th>Sảnh</th>
-        <th style="width:100px;">Số lượng</th>
-        <th style="width:200px;">
+@*        <th style="width:100px;">Số lượng</th>
+*@        <th style="width:200px;">Chức năng
         </th>
     </tr>
     @if (Model != null && Model.Any())
@@ -27,12 +27,12 @@
                     </td>
                     <td>@item.SpaceName</td>
 
-                    <td><input type="number" class="form-control" id="Quantity_@item.TableId" value="@item.Quantity" /></td>
-
+@*                    <td><input type="number" class="form-control" id="Quantity_@item.TableId" value="@item.Quantity" /></td>
+*@
                     <td>
                         <a href="#" data-id="@item.TableId" class="btn btn-sm btn-danger btnDeleteTable">Xóa</a>
-                        <a href="#" data-id="@item.TableId" class="btn btn-sm btn-success btnUpdateTable">Cập nhật</a>
-                    </td>
+@*                        <a href="#" data-id="@item.TableId" class="btn btn-sm btn-success btnUpdateTable">Cập nhật</a>
+*@                    </td>
                 </tr>
                 i++;
                 }

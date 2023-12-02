@@ -39,18 +39,18 @@
                 tongsoban += item.Quantity;
                 <tr>
                     <td><h5>@item.TableName</h5></td>
-                    <td><h5>Số lượng: @item.Quantity</h5></td>
-
+@*                    <td><h5>Số lượng: @item.Quantity</h5></td>
+*@
                 </tr>
             }
             <tr>
                 <td><h5>Tổng số bàn: </h5></td>
-                <td><h5>@Common.FormatNumber(tongsoban, 0)</h5></td>
+                <td><h5>@Common.FormatNumber(tongsoban, 0) </h5></td>
             </tr>   
             <tr>
 
                 <td><h5>Tổng tiền:</h5></td>
-                <td><h5>@Common.FormatNumber(Model.Total, 0) VND</h5></td>
+                <td><h5>@Common.FormatNumber(Model.Total, 0) đ</h5></td>
             </tr>
         </table>
     </div>

@@ -31,9 +31,9 @@
         <div class="card-body">
             <div class="invoice-header">
 
-                <p>Mã hóa đơn: @Model.code </p>
-                <p>Khách hàng: @Model.customername </p>
-                <p>Ngày đặt  : @Model.datetime</p>
+                <p>Mã hóa đơn: @Model.code đ</p>
+                <p>Khách hàng: @Model.customername đ</p>
+                <p>Ngày đặt  : @Model.datetime đ</p>
             </div>
             <div class="row">
 
@@ -41,10 +41,20 @@
                     @Html.Action("Partial_SanPham", "Invoice", new { id = Model.id })
                 </div>
             </div>
+            @if (Model.ship > 0)
+            {
             <div class="row">
                 <div class="col-md-12">
-                    <div class="form-group" style="margin-left: 790px;">
-                        <label><th>Tổng tiền:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @DoAnCoSo.Common.Common.FormatNumber(Model.total, 0) đ</th></label>
+                    <div class="form-group" style="margin-left: 818px;">
+                        <label><th>Phí ship:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @DoAnCoSo.Common.Common.FormatNumber(Model.ship, 0) đ</th></label>
+                    </div>
+                </div>
+            </div>
+            }
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group" style="margin-left: 808px;">
+                        <label><th>Tổng tiền:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @DoAnCoSo.Common.Common.FormatNumber(Model.total + Model.ship, 0) đ</th></label>
 
                     </div>
                 </div>

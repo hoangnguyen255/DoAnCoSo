@@ -31,9 +31,9 @@
                     {
                         <tr>
                             <td>@item.Product.title</td>
-                            <td>@item.price</td>
+                            <td>@DoAnCoSo.Common.Common.FormatNumber(item.price, 0) đ</td>
                             <td>@item.quantity</td>
-                            <td>@DoAnCoSo.Common.Common.FormatNumber((item.price * item.quantity), 0)</td>
+                            <td>@DoAnCoSo.Common.Common.FormatNumber((item.price * item.quantity), 0) đ</td>
                         </tr>
                     }
                 }

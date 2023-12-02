@@ -23,9 +23,9 @@
                     <tr>
                         <td>@i</td>
                         <td>@item.Product.title</td>
-                        <td>@item.price</td>
+                        <td>@DoAnCoSo.Common.Common.FormatNumber(item.price, 0) đ</td>
                         <td>@item.quantity</td>
-                        <td>@DoAnCoSo.Common.Common.FormatNumber((item.price * item.quantity), 0)</td>
+                        <td>@DoAnCoSo.Common.Common.FormatNumber((item.price * item.quantity), 0) đ</td>
                     </tr>
                     i++;
                 }
@@ -35,31 +35,32 @@
         </tbody>
     </table>
     int a = 1;
+   
+<table class="table table-bordered">
+    <h3>Danh sách bàn</h3>
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Tên bàn</th>
+            <th>Không gian</th>
+        </tr>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>STT</th>
-                <th>Tên bàn</th>
-                <th>Không gian</th>
-            </tr>
+    </thead>
+    <tbody>
 
-        </thead>
-        <tbody>
-
-            @foreach (var item in Model)
+        @foreach (var item in Model)
+        {
+            if (item.Table != null)
             {
-                if (item.Table != null)
-                {
-                    <tr>
-                        <td>@a</td>
-                        <td>@item.Table.title</td>
-                        <td>@item.Table.Space.title</td>
-                    </tr>
-                    a++;
-                }
-
+                <tr>
+                    <td>@a</td>
+                    <td>@item.Table.title</td>
+                    <td>@item.Table.Space.title</td>
+                </tr>
+                a++;
             }
-        </tbody>
-    </table>
+
+        }
+    </tbody>
+</table>
 }
