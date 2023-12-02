@@ -16,8 +16,8 @@ namespace DoAnCoSo.Areas.Admin.Controllers
         // GET: Admin/Order
         public ActionResult Index(int? page)
         {
-            var items = db.Orders.OrderByDescending(x => x.createddate).ToList();
-            
+            var items = db.Orders.Where(x => x.ship == 0).OrderByDescending(x => x.createddate).ToList();
+          
             if (page == null)
             {
                 page = 1;
@@ -28,22 +28,6 @@ namespace DoAnCoSo.Areas.Admin.Controllers
             ViewBag.Page = pageNumber;
             return View(items.ToPagedList(pageNumber, pageSize));
         }
-        public ActionResult IndexShip(int? page)
-        {
-            var items = db.Orders.OrderByDescending(x => x.createddate).ToList();
-           
-            if (page == null)
-            {
-                page = 1;
-            }
-            var pageNumber = page ?? 1;
-            var pageSize = 10;
-            ViewBag.PageSize = pageSize;
-            ViewBag.Page = pageNumber;
-            return View(items.ToPagedList(pageNumber, pageSize));
-        }
-
-
         public ActionResult View(int id)
         {
             var item = db.Orders.Find(id);

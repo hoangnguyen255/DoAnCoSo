@@ -17,7 +17,7 @@ namespace DoAnCoSo.Areas.Admin.Controllers
         public ActionResult Index(int? page)
         {
             var items = db.Orders.OrderByDescending(x => x.createddate).ToList();
-            
+            items = db.Orders.Where(x => x.ship > 0).ToList(); 
             if (page == null)
             {
                 page = 1;
