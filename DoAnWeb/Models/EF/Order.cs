@@ -33,6 +33,8 @@ namespace DoAnCoSo.Models.EF
         public decimal? ship { get; set; } = 0;
         public int quantity { get; set; }
         public int typepayment { get; set; }
+        public int status { get; set; }
+
         public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

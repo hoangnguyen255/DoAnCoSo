@@ -263,6 +263,10 @@
     <Compile Include="Migrations\202312020619009_updateporderdetail.designer.cs">
       <DependentUpon>202312020619009_updateporderdetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202312061304567_UpdateOrder.cs" />
+    <Compile Include="Migrations\202312061304567_UpdateOrder.designer.cs">
+      <DependentUpon>202312061304567_UpdateOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CommonAbstracts.cs" />
@@ -291,6 +295,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
+    <Compile Include="Models\VnPayLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -3510,6 +3515,7 @@
     <Content Include="Views\ShoppingCart\Partial_CheckOutShip.cshtml" />
     <Content Include="Views\ShoppingCart\Partial_Map.cshtml" />
     <Content Include="Views\Menu\_MenuCategory.cshtml" />
+    <Content Include="Views\ShoppingCart\VnpayReturn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3570,6 +3576,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202312020619009_updateporderdetail.resx">
       <DependentUpon>202312020619009_updateporderdetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312061304567_UpdateOrder.resx">
+      <DependentUpon>202312061304567_UpdateOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

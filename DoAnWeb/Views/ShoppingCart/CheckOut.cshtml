@@ -70,12 +70,19 @@
             }
         }
 
-        function OnSuccessCO(rs) {
+        @*function OnSuccessCO(rs) {
             debugger;
             location.href = "/ShoppingCart/CheckOutSuccess";
-        }
+        }*@
 
         $(document).ready(function () {
+            $('body').on('change', '#drTypePayment', function () {
+                var type = $(this).val();
+                $('#load_form_payment').hide();
+                if (type == "2") {
+                    $('#load_form_payment').show();
+                }
+            });
             $('#myForm').validate({
                 rules: {
                     'customername': {

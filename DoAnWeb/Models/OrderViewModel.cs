@@ -18,6 +18,7 @@ namespace DoAnCoSo.Models
         public DateTime datetime { get; set; } = DateTime.Now;
         public string email { get; set; }
         public int typepayment { get; set; }
+        public int typepaymentvn { get; set; }
 
     }
 }

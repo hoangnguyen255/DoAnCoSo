@@ -58,7 +58,7 @@
                                 <td>@DoAnCoSo.Common.Common.FormatNumber(item.ship, 0) đ</td>
                                 <td>@DoAnCoSo.Common.Common.FormatNumber(item.total + item.ship, 0) đ</td>
                                 <td>@item.datetime.ToString("dd/MM/yyyy hh:mm:tt")</td>
-                                <td>@(item.typepayment == 1 ? "Đã thanh toán" : "Chờ thanh toán")</td>
+                                <td>@(item.typepayment == 2 ? "Đã thanh toán" : "Chờ thanh toán")</td>
                                 <td>
                                     <a href="/admin/ordership/view/@item.id" class="btn btn-sm btn-success">Chi tiết</a>
                                     <a href="#" class="btn btn-sm btn-danger btnCapNhat" data-id="@item.id">Cập nhật</a>

@@ -50,6 +50,12 @@ namespace DoAnCoSo
                 namespaces: new[] { "DoAnCoSo.Controllers" }
              );
             routes.MapRoute(
+                name: "vnpay_return",
+                url: "vnpay_return",
+                defaults: new { controller = "ShoppingCart", action = "VnpayReturn", alias = UrlParameter.Optional },
+                namespaces: new[] { "DoAnCoSo.Controllers" }
+            );
+         routes.MapRoute(
                 name: "ShoppingCart",
                 url: "gio-hang",
                 defaults: new { controller = "ShoppingCart", action = "Index", alias = UrlParameter.Optional },
