@@ -33,10 +33,11 @@
                         <th>Mã đơn hàng</th>
                         <th>Tên Khách hàng</th>
                         <th>Số điện thoại</th>
-                        <th>Tiền</th>
-                        <th>Ship</th>
+                     @*   <th>Tiền</th>
+                        <th>Ship</th>*@
                         <th>Tổng tiền</th>
-                        <th>Ngày đặt hàng</th>
+@*                        <th>Phương thức thanh toán</th>
+*@                        <th>Ngày đặt hàng</th>
                         <th>Trạng thái</th>
                         <th>Chức năng</th>
                     </tr>
@@ -54,11 +55,29 @@
                                 <td>@item.code</td>
                                 <td>@item.customername</td>
                                 <td>@item.phone</td>
-                                <td>@DoAnCoSo.Common.Common.FormatNumber(item.total, 0) đ</td>
-                                <td>@DoAnCoSo.Common.Common.FormatNumber(item.ship, 0) đ</td>
-                                <td>@DoAnCoSo.Common.Common.FormatNumber(item.total + item.ship, 0) đ</td>
+                              @*  <td>@DoAnCoSo.Common.Common.FormatNumber(item.total, 0) đ</td>
+                                <td>@DoAnCoSo.Common.Common.FormatNumber(item.ship, 0) đ</td>*@
+                                <td>@DoAnCoSo.Common.Common.FormatNumber(item.total,0) đ</td>
+                                @*<td>@(item.typepayment==1?"COD":"Chuyển khoản")</td>*@
                                 <td>@item.datetime.ToString("dd/MM/yyyy hh:mm:tt")</td>
-                                <td>@(item.typepayment == 2 ? "Đã thanh toán" : "Chờ thanh toán")</td>
+                                <td>
+                                    @if (item.status == 1)
+                                    {
+                                        <span>Chưa thanh toán</span>
+                                    }
+                                    @if (item.status == 2)
+                                    {
+                                        <span>Đã thanh toán</span>
+                                    }
+                                    @if (item.status == 3)
+                                    {
+                                        <span>Hoàn thành</span>
+                                    }
+                                    @if (item.status == 4)
+                                    {
+                                        <span>Hủy</span>
+                                    }
+                                </td>
                                 <td>
                                     <a href="/admin/ordership/view/@item.id" class="btn btn-sm btn-success">Chi tiết</a>
                                     <a href="#" class="btn btn-sm btn-danger btnCapNhat" data-id="@item.id">Cập nhật</a>
@@ -106,6 +125,12 @@
                     <select class="form-control" id="ddTrangThai">
                         <option value="2">
                             Đã thanh toán
+                        </option>
+                        <option value="3">
+                            Hoàn thành
+                        </option>
+                        <option value="4">
+                            Hủy
                         </option>
                     </select>
                 </div>

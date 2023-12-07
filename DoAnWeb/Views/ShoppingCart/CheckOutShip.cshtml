@@ -72,13 +72,14 @@
             if (!rs.Success) {
                 $('#show_success').html("Bạn mua hàng thất bại! Xin vui lòng thử lại");
             }
+
         }
 
-        function OnSuccessCO(rs) {
+      @*  function OnSuccessCO(rs) {
             debugger;
             location.href = "/ShoppingCart/CheckOutSuccess";
         }
-
+*@
         $(document).ready(function () {
             $('body').on('change', '#drTypePayment', function () {
                 var type = $(this).val();

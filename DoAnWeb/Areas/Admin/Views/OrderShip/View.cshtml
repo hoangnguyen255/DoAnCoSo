@@ -76,8 +76,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Trạng thái</label>
-                        <p class="form-control">@(Model.typepayment == 1 ? "Đã thanh toán" : "Chưa thanh toán" )</p>
+                        <label>Phí ship</label>
+                        <p class="form-control"> @DoAnCoSo.Common.Common.FormatNumber(Model.ship,0) đ</p>
                     </div>
                 </div>
             </div>
@@ -92,7 +92,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group" style="margin-left: 815px;">
-                        <label><th>Tổng tiền:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @DoAnCoSo.Common.Common.FormatNumber(Model.total + Model.ship, 0) đ</th></label>
+                        <label><th>Tổng tiền:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @DoAnCoSo.Common.Common.FormatNumber(Model.total, 0) đ</th></label>
 
                     </div>
                 </div>

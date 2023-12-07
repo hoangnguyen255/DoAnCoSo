@@ -16,19 +16,21 @@
             $('#load_send').html('<h2>Đang gửi....</h2>');
         }
         function OnSuccessCO(res) {
-            if (res.Success) {
-                if (res.Code == 1) {
+            if (res.responseJSON.Success) {
+                if (res.responseJSON.Code == 1) {
+                    console.log("Code is 1. Redirecting to:", location.href);
                     location.href = "/ShoppingCart/CheckOutSuccess";
                 }
                 else {
-                    console.log("Code is not 1. Redirecting to:", res.Url);
-                    location.href = res.Url;
+                    console.log("Code is not 1. Redirecting to:", res.responseJSON.Url);
+
+                    location.href = res.responseJSON.Url;
                 }
             }
         }
-            //function OnFailure() {
+                //function OnFailure() {
 
-            //}
+                //}
     </script>
     @Html.AntiForgeryToken()
     <h3>Thông tin khách hàng </h3>
@@ -77,3 +79,5 @@
 }
 
 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.unobtrusive-ajax/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
