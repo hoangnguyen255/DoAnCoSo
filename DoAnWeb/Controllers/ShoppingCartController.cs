@@ -242,7 +242,7 @@ namespace DoAnCoSo.Controllers
                         quantity = x.Quantity,
                         price = x.Price
                     }));
-                    order.total = cart.items.Sum(x => (x.Price * x.Quantity)+ decimal.Parse(delivery.ToString()));
+                    order.total = cart.items.Sum(x => (x.Price * x.Quantity)) + decimal.Parse(delivery.ToString());
                     order.typepayment = req.typepayment;
                     order.createddate = req.datetime;
                     order.modifierdate = DateTime.Now;
