@@ -19,7 +19,7 @@
             if (res.responseJSON.Success) {
                 if (res.responseJSON.Code == 1) {
                     console.log("Code is 1. Redirecting to:", location.href);
-                    location.href = "/ShoppingCart/CheckOutShipSuccess";
+                    location.href = "/ShoppingCart/CheckOutSuccess";
                 }
                 else {
                     console.log("Code is not 1. Redirecting to:", res.responseJSON.Url);

@@ -38,6 +38,7 @@ namespace DoAnCoSo.Areas.Admin.Controllers
 
         public ActionResult Partial_SanPham(int id)
         {
+            //var items = db.OrderDetails.Where(x => x.tableid == id).ToList();
             var items = db.OrderDetails.Where(x => x.orderid == id).ToList();
             return PartialView(items);
         }

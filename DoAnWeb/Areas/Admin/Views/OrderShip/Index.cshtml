@@ -18,6 +18,7 @@
     </ul>
 }
 
+
 <!-- Main content -->
 <section class="content">
     <!-- Default box -->
@@ -33,11 +34,12 @@
                         <th>Mã đơn hàng</th>
                         <th>Tên Khách hàng</th>
                         <th>Số điện thoại</th>
-                     @*   <th>Tiền</th>
-                        <th>Ship</th>*@
+                        @*   <th>Tiền</th>
+                            <th>Ship</th>*@
                         <th>Tổng tiền</th>
-@*                        <th>Phương thức thanh toán</th>
-*@                        <th>Ngày đặt hàng</th>
+                        @*                        <th>Phương thức thanh toán</th>
+                        *@
+                        <th>Ngày đặt hàng</th>
                         <th>Trạng thái</th>
                         <th>Chức năng</th>
                     </tr>
@@ -50,40 +52,46 @@
                         {
                             if (item.ship != 0)
                             {
-                            <tr>
-                                <td>@a</td>
-                                <td>@item.code</td>
-                                <td>@item.customername</td>
-                                <td>@item.phone</td>
-                              @*  <td>@DoAnCoSo.Common.Common.FormatNumber(item.total, 0) đ</td>
-                                <td>@DoAnCoSo.Common.Common.FormatNumber(item.ship, 0) đ</td>*@
-                                <td>@DoAnCoSo.Common.Common.FormatNumber(item.total,0) đ</td>
-                                @*<td>@(item.typepayment==1?"COD":"Chuyển khoản")</td>*@
-                                <td>@item.datetime.ToString("dd/MM/yyyy hh:mm:tt")</td>
-                                <td>
-                                    @if (item.status == 1)
-                                    {
-                                        <span>Chưa thanh toán</span>
-                                    }
-                                    @if (item.status == 2)
-                                    {
-                                        <span>Đã thanh toán</span>
-                                    }
-                                    @if (item.status == 3)
-                                    {
-                                        <span>Hoàn thành</span>
-                                    }
-                                    @if (item.status == 4)
-                                    {
-                                        <span>Hủy</span>
-                                    }
-                                </td>
-                                <td>
-                                    <a href="/admin/ordership/view/@item.id" class="btn btn-sm btn-success">Chi tiết</a>
-                                    <a href="#" class="btn btn-sm btn-danger btnCapNhat" data-id="@item.id">Cập nhật</a>
-                                    <a href="/admin/invoice/view/@item.id" class="btn btn-sm btn-success">Lập hóa đơn</a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>@a</td>
+                                    <td>@item.code</td>
+                                    <td>@item.customername</td>
+                                    <td>@item.phone</td>
+                                    @*  <td>@DoAnCoSo.Common.Common.FormatNumber(item.total, 0) đ</td>
+                                        <td>@DoAnCoSo.Common.Common.FormatNumber(item.ship, 0) đ</td>*@
+                                    <td>@DoAnCoSo.Common.Common.FormatNumber(item.total, 0) đ</td>
+                                    @*<td>@(item.typepayment==1?"COD":"Chuyển khoản")</td>*@
+                                    <td>@item.datetime.ToString("dd/MM/yyyy hh:mm:tt")</td>
+                                    <td>
+                                        @if (item.status == 1)
+                                        {
+                                            <span>Chưa thanh toán</span>
+                                        }
+                                        @if (item.status == 2)
+                                        {
+                                            <span>Đã thanh toán</span>
+                                        }
+                                        @if (item.status == 3)
+                                        {
+                                            <span>Hoàn thành</span>
+                                        }
+                                        @if (item.status == 4)
+                                        {
+                                            <span>Hủy</span>
+                                        }
+                                    </td>
+                                    <td>
+
+                                        <a href="/admin/ordership/view/@item.id" class="btn btn-sm btn-success">Chi tiết</a>
+
+
+                                        <a href="/admin/invoice/view/@item.id" class="btn btn-sm btn-success">Lập hóa đơn</a>
+                                        @if (item.status != 3)
+                                        {
+                                            <a href="#" class="btn btn-sm btn-danger btnCapNhat" data-id="@item.id">Cập nhật</a>
+                                        }
+                                    </td>
+                                </tr>
                             }
                             a++;
                         }
@@ -145,30 +153,30 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+    @section scripts{
+        <script>
+            $(document).ready(function () {
+                $('body').on('click', '.btnCapNhat', function () {
+                    var id = $(this).data("id");
+                    $('#txtOrderId').val(id);
+                    $('#modal-default').modal('show');
+                });
 
-@section scripts{
-    <script>
-        $(document).ready(function () {
-            $('body').on('click', '.btnCapNhat', function () {
-                var id = $(this).data("id");
-                $('#txtOrderId').val(id);
-                $('#modal-default').modal('show');
-            });
+                $('body').on('click', '#btnLuu', function () {
+                    var id = $('#txtOrderId').val();
+                    var tt = $('#ddTrangThai').val();
+                    $.ajax({
+                        url: '/admin/orderShip/UpdateTT',
+                        type: 'POST',
+                        data: { id: id, trangthai: tt },
+                        success: function (res) {
 
-            $('body').on('click', '#btnLuu', function () {
-                var id = $('#txtOrderId').val();
-                var tt = $('#ddTrangThai').val();
-                $.ajax({
-                    url: '/admin/order/UpdateTT',
-                    type: 'POST',
-                    data: { id: id, trangthai: tt },
-                    success: function (res) {
-                        if (res.Success) {
-                            location.reload();
+                            if (res.Success) {
+                                location.reload();
+                            }
                         }
-                    }
+                    });
                 });
             });
-        });
-    </script>
-}
+        </script>
+    }

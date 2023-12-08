@@ -16,24 +16,25 @@
     int i = 1;
     <div class="invoice-items">
         <table class="table table-bordered">
-            <thead>
-                <tr>
+            <!--<thead>-->
+                @*<tr>
                     <th>Tên sản phẩm</th>
                     <th>Giá</th>
                     <th>Số lượng</th>
                     <th>Thành tiền</th>
-                </tr>
-            </thead>
+                </tr>*@
+            <!--</thead>-->
             <tbody>
                 @foreach (var item in Model)
                 {
-                    if (item.Product != null)
+                    if (item.Table != null)
                     {
                         <tr>
-                            <td>@item.Product.title</td>
-                            <td>@DoAnCoSo.Common.Common.FormatNumber(item.price, 0) đ</td>
+                            <td>@item.Table.Space.title</td>
+                            <td>@item.Table.title</td>
+                            <td>@DoAnCoSo.Common.Common.FormatNumber(item.price, 0) VND</td>
                             <td>@item.quantity</td>
-                            <td>@DoAnCoSo.Common.Common.FormatNumber((item.price * item.quantity), 0) đ</td>
+                            <td>@DoAnCoSo.Common.Common.FormatNumber((item.price * item.quantity), 0) VND</td>
                         </tr>
                     }
                 }
