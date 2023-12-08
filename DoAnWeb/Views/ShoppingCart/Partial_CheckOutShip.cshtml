@@ -13,7 +13,7 @@
     <script>
         function OnBeginCO() {
             $('#btnCheckOut').attr("disabled", "disabled");
-            $('#load_send').html('<h2>Đang gửi....</h2>');
+            $('#load_send').html('<h3>Xin chờ trong giây lát....</h3>');
         }
         function OnSuccessCO(res) {
             if (res.responseJSON.Success) {
