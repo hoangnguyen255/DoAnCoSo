@@ -93,6 +93,12 @@ namespace DoAnCoSo
                  namespaces: new[] { "DoAnCoSo.Controllers" }
             );
             routes.MapRoute(
+                 name: "Tables",
+                 url: "ban2",
+                 defaults: new { controller = "Tables", action = "Index2", alias = UrlParameter.Optional },
+                 namespaces: new[] { "DoAnCoSo.Controllers" }
+            );
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },

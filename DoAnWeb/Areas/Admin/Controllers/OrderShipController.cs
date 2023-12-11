@@ -1,4 +1,5 @@
 ﻿using DoAnCoSo.Models;
+using DoAnCoSo.Models.EF;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,17 @@ namespace DoAnCoSo.Areas.Admin.Controllers
 
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: Admin/Order
-        public ActionResult Index(int? page)
+        public ActionResult Index(string SearchText, int? page)
         {
-            var items = db.Orders.Where(x => x.ship > 0).OrderByDescending(x => x.createddate).ToList();
+            IEnumerable<Order> items = db.Orders.Where(x => x.ship > 0).OrderByDescending(x => x.createddate).ToList();
+            if (!string.IsNullOrEmpty(SearchText))
+            {
+                string searchTextLower = SearchText.ToLowerInvariant();  // Convert the search text to lowercase
+
+                items = items.Where(x => x.code.ToLowerInvariant().Contains(searchTextLower) ||
+                                          x.customername.ToLowerInvariant().Contains(searchTextLower) || x.phone.Contains(searchTextLower));
+                //items = items.Where(x => x.code.Contains(SearchText) || x.customername.Contains(SearchText));
+            }
             if (page == null)
             {
                 page = 1;

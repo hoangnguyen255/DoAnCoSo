@@ -38,6 +38,19 @@ COLOR PALETTE
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,900');
 
+.thu-nghiem-zoom img {
+	display: block;
+	transition: all .3s ease;
+}
+
+	.thu-nghiem-zoom img:hover {
+		transform: scale(1.3); /* cỡ zoom khi di chuột vào */
+	}
+
+.thu-nghiem-zoom div {
+	display: block;
+	overflow: hidden;
+}
 /*********************************
 2. Body and some general stuff
 *********************************/

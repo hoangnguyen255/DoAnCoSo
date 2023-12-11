@@ -28,12 +28,12 @@
                     </div>
                     @Html.Action("MenuLeft", "Menu")
                 </div>
-             @*   <div class="sidebar_section">
-                    <div class="sidebar_title">
-                        <h5>Danh mục bàn</h5>
-                    </div>
-                    @Html.Action("MenuLeftTable", "Menu")
-                </div>*@
+                @*   <div class="sidebar_section">
+                        <div class="sidebar_title">
+                            <h5>Danh mục bàn</h5>
+                        </div>
+                        @Html.Action("MenuLeftTable", "Menu")
+                    </div>*@
             </div>
 
             <!-- Main Content -->
@@ -99,7 +99,6 @@
                         </div>
 
                         <!-- Product Grid -->
-
                         <div class="product-grid">
 
                             <!-- Product 1 -->
@@ -115,9 +114,12 @@
                                     }
                                     <div class="product-item @item.ProductCategory.alias">
                                         <div class="product discount product_filter">
-                                            <div class="product_image">
-                                                <img src="@strImage" alt="@item.title">
 
+
+                                            <div class="product_image">
+                                                <div class="thu-nghiem-zoom">
+                                                    <img src="@strImage" alt="@item.title">
+                                                </div>
                                             </div>
                                             <div class="favorite favorite_left"></div>
                                             @if (item.pricesale > 0)

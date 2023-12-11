@@ -23,17 +23,22 @@
 
     <!-- Default box -->
     <div class="card">
-        <div class="card-header">
-            <h1 style="margin-left: 450px">HÓA ĐƠN</h1>
-
+        
+@*            //<img src="~/Uploads/images/icon/eb9682d45911884fd100.jpg" style="height: 105px; padding-left:185px;"/>
+*@            <div class="card-tools" >
+                <h5 style="text-align:center">NHÀ HÀNG VIETKITCHEN</h5>
+                <h5 style="text-align:center">720A Đ. Điện Biên Phủ, Bình Thạnh, Thành phố Hồ Chí Minh</h5>
+                <h5 style="text-align:center">0946 786 967 -  0941 453 987</h5>
+                <h1 style="text-align:center">HÓA ĐƠN THANH TOÁN</h1>
+        <hr />
             @*<h3 class="card-title">Chi tiết hóa đơn</h3>*@
         </div>
         <div class="card-body">
             <div class="invoice-header">
 
-                <p>Mã hóa đơn: @Model.code đ</p>
-                <p>Khách hàng: @Model.customername đ</p>
-                <p>Ngày đặt  : @Model.datetime đ</p>
+                <p>Mã hóa đơn: @Model.code </p>
+                <p>Khách hàng: @Model.customername </p>
+                <p>Thời gian:  @DateTime.Now </p>
             </div>
             <div class="row">
 
@@ -43,13 +48,13 @@
             </div>
             @if (Model.ship > 0)
             {
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group" style="margin-left: 818px;">
-                        <label><th>Phí ship:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @DoAnCoSo.Common.Common.FormatNumber(Model.ship, 0) đ</th></label>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group" style="margin-left: 818px;">
+                            <label><th>Phí ship:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @DoAnCoSo.Common.Common.FormatNumber(Model.ship, 0) đ</th></label>
+                        </div>
                     </div>
                 </div>
-            </div>
             }
             <div class="row">
                 <div class="col-md-12">
@@ -59,7 +64,9 @@
                     </div>
                 </div>
             </div>
-            <button onclick="printInvoice()">In hóa đơn</button>
+            <hr />
+            <h5 style="text-align:center">Trân trọng cảm ơn!</h5>
+            <button onclick="printInvoice()" style=" height: 50px;opacity:0;">In hóa đơn</button>
 
         </div>
         <!-- /.card-body -->

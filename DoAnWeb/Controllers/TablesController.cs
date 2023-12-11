@@ -18,6 +18,11 @@ namespace DoAnCoSo.Controllers
             var items = db.Tables.ToList();
             return View(items);
         }
+        public ActionResult Index2()
+        {
+            var items = db.Tables.ToList();
+            return View(items);
+        }
         public ActionResult Detail(string alias, int id)
         {
             var item = db.Tables.Find(id);

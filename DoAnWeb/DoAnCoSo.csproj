@@ -3413,6 +3413,7 @@
     <Content Include="Areas\Admin\Views\OrderShip\Index.cshtml" />
     <Content Include="Areas\Admin\Views\OrderShip\Partial_SanPham.cshtml" />
     <Content Include="Areas\Admin\Views\OrderShip\View.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\IndexDate.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3429,13 +3430,15 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Uploads\files\3x3.png" />
     <Content Include="Uploads\files\user-2.png" />
-    <Content Include="Uploads\images\ddd2.1.png" />
+    <Content Include="Uploads\images\icon\1_auto_x2_auto_x2.jpg" />
     <Content Include="Uploads\images\icon\301233268_188255490260753_241183637665719382_n.jpg" />
     <Content Include="Uploads\images\icon\353068537_211757027918853_4931193201969409622_n.jpg" />
+    <Content Include="Uploads\images\icon\bo.jpg" />
     <Content Include="Uploads\images\icon\eb9682d45911884fd100.jpg" />
     <Content Include="Uploads\images\icon\icons8-messenger-48.png" />
     <Content Include="Uploads\images\icon\icons8-zalo-48.png" />
     <Content Include="Uploads\images\icon\images3.jpg" />
+    <Content Include="Uploads\images\icon\img-1.png" />
     <Content Include="Uploads\images\img-4.png" />
     <Content Include="Uploads\images\icon\spm.jpg" />
     <Content Include="Uploads\images\icon\Twitter-logo.svg.png" />
@@ -3444,6 +3447,7 @@
     <Content Include="Uploads\images\img-3.png" />
     <Content Include="Uploads\images\img-5.png" />
     <Content Include="Uploads\images\mau-nha-hang-5-tang-thuy-khue-bt14413-5_auto_x2_auto_x2 %281%29.jpg" />
+    <Content Include="Uploads\images\tumbnailwe.jpg" />
     <Content Include="Uploads\_thumbs\Files\3x3.png" />
     <Content Include="Uploads\_thumbs\Files\user-2.png" />
     <Content Include="Uploads\_thumbs\Images\244957420_606189827064944_6014436531673195615_n.jpg" />
@@ -3517,6 +3521,7 @@
     <Content Include="Views\Menu\_MenuCategory.cshtml" />
     <Content Include="Views\ShoppingCart\VnpayReturn.cshtml" />
     <Content Include="Views\ShoppingCart\CheckOutShipSuccess.cshtml" />
+    <Content Include="Views\Tables\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

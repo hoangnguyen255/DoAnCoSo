@@ -1,0 +1,204 @@
+﻿
+@model IEnumerable<DoAnCoSo.Models.EF.Table>
+
+@{
+    ViewBag.Title = "Danh sách bàn";
+}
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/categories_styles.css">
+<link rel="stylesheet" type="text/css" href="~/Content/assets/styles/categories_responsive.css">
+
+<div class="container product_section_container">
+    <div class="row">
+        <div class="col product_section clearfix">
+
+            <!-- Breadcrumbs -->
+
+            <div class="breadcrumbs d-flex flex-row align-items-center">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li class="active"><a href="/"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+
+            <!-- Sidebar -->
+
+            <div class="sidebar">
+                <div class="sidebar_section">
+                    <div class="sidebar_title">
+                        <h5>Danh mục bàn</h5>
+                    </div>
+                    @Html.Action("MenuLeftTable", "Menu")
+                </div>
+            </div>
+
+
+            <!-- Main Content -->
+
+            <div class="main_content">
+
+                <!-- Products -->
+                <div class="products_iso">
+                    <div class="row">
+                        <div class="col">
+                 @*Product Sorting*@ 
+                <div class="product_sorting_container product_sorting_container_top">
+                    <ul class="product_sorting">
+                @* <li>
+                        <span class="type_sorting_text">Mặc định</span>
+                        <i class="fa fa-angle-down"></i>
+                        <ul class="sorting_type">
+                            <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Mặc định</span></li>
+                            <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Giá</span></li>
+                            <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Tên sản phẩm</span></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <span>Show</span>
+                        <span class="num_sorting_text">6</span>
+                        <i class="fa fa-angle-down"></i>
+                        <ul class="sorting_num">
+                            <li class="num_sorting_btn"><span>6</span></li>
+                            <li class="num_sorting_btn"><span>12</span></li>
+                            <li class="num_sorting_btn"><span>24</span></li>
+                        </ul>
+                    </li>
+                  <li style="width: 100px; padding-left:0px;">
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+                        <input type="text" name="datetime" id="datetimepicker" placeholder=" Chọn ngày giờ">
+                    </li>*@
+                </ul> 
+                <div class="pages d-flex flex-row align-items-center">
+                        <div class="page_current">
+                            <span>2</span>
+                            <ul class="page_selection">
+                                <li><a href="/ban">1</a></li>
+                                <li><a href="/ban2">2</a></li>
+                                <li><a href="/san-pham">3</a></li>
+                            </ul>
+                        </div>
+                        <div class="page_total"><span>of</span> 3</div>
+                        <div id="next_page" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
+                    </div>
+            </div>
+            <!-- Product Grid -->
+            <div class="table-grid" style="height:1220px; padding-top:0px;">
+                <!-- Product 1 -->
+                @* @if (Model != null && Model.Any())
+                    {
+                        int count = 0;
+                            foreach (var item in Model)
+                            {
+                                var strImage = "";
+                                var img = item.TableImages.FirstOrDefault(x => x.isdefault);
+                                if (img != null)
+                                {
+                                    strImage = img.image;
+                                }
+                            <div class="product-item @item.Space.alias" style="height: 161px; width:100%;">
+                                <div class="product discount product_filter" style="height:184px">*@
+                <!--<div class="product_image"--> @*style="width: 100px; text-align: center; height: 200px"*@
+                @*>
+                    <img style=" height: 165px; width: 189px" src="@strImage" alt="@item.title">
+                </div>*@
+                <div class="product_image" @*style="width: 100px; text-align: center; height: 200px"*@>
+                    <img style=" height: 1215px; width: 914px" src="~/Uploads/images/icon/1_auto_x2_auto_x2.jpg" >
+                </div>
+                
+                @*                                                <div class="favorite favorite_left"></div>*@
+
+                @* <div class="product_info">
+                        <h6 class="product_name" style="font-size: large; margin-top: 3px"><a href="/chi-tiet/@item.alias-@(item.id)">@item.title</a></h6>
+                    </div>*@
+            </div>
+            @*  @if (item.tablecode = "0")
+                {
+                    <div class="red_button add_to_cart_button" style="height: 30px;"><a href="" class="btnAddTableToCart" data-id="@item.id">add to cart</a></div>
+
+                }*@
+            @*<div class="red_button add_to_cart_button" style="height: 30px;"><a href="" class="btnAddTableToCart" data-id="@item.id">add to cart</a></div>*@
+        </div>
+     @*   }
+        }*@
+    </div>
+
+    <!-- Product Sorting -->
+    @*<div class="product_sorting_container product_sorting_container_bottom clearfix">
+        <ul class="product_sorting">
+            <li>
+                <span>Show:</span>
+                <span class="num_sorting_text">04</span>
+                <i class="fa fa-angle-down"></i>
+                <ul class="sorting_num">
+                    <li class="num_sorting_btn"><span>01</span></li>
+                    <li class="num_sorting_btn"><span>02</span></li>
+                    <li class="num_sorting_btn"><span>03</span></li>
+                    <li class="num_sorting_btn"><span>04</span></li>
+                </ul>
+            </li>
+        </ul>*@
+    @*<span class="showing_results">Showing 1–3 of 12 results</span>
+        <div class="pages d-flex flex-row align-items-center">
+            <div class="page_current">
+                <span>1</span>
+                <ul class="page_selection">
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                </ul>
+            </div>
+            <div class="page_total"><span>of</span> 3</div>
+            <div id="next_page_1" class="page_next"><a href="#"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></div>
+        </div>*@
+
+    @*       </div>
+
+                </div>
+            </div>
+        </div>*@
+</div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Content/assets/js/categories_custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="~/Content/assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css"></script>
+
+    <script>
+        $(document).on('change', '#datetimepicker', function () {
+            var datetime = $(this).val();
+            $('.btnAddToCart').attr('data-datetime', datetime);
+        });
+        $(function () {
+            $(".datepicker").datepicker({
+
+                minDate: 'Today +1d',
+                maxDate: "+7d"
+            });
+        });
+
+
+        flatpickr("#datetimepicker", {
+            enableTime: true,
+            minDate: "today",
+            maxDate: new Date().fp_incr(90),
+            time_24hr: true,
+            minDate: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
+            dateFormat: "Y-m-d H:i",// Tính toán ngày tối đa là ngày hiện tại cộng thêm 7 ngày
+        });
+        $(function () {
+            $("#datetimepicker").change(function () {
+                // Lấy các giá trị được nhập vào trên form
+                const date = document.getElementById("datetimepicker").value;
+                $.ajax({
+                    url: "/Tables/Partial_View_Table",
+                    type: "POST",
+                    data: { date: date },
+                    success: function (data) {
+                        $('.table-grid').html(data);
+                    },
+                });
+            });
+        })
+    </script>
+} 

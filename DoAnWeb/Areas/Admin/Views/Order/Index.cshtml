@@ -1,5 +1,7 @@
 ﻿@model PagedList.IPagedList<DoAnCoSo.Models.EF.Order>
 @using PagedList.Mvc;
+@using PagedList;
+
 @{
     ViewBag.Title = "Danh sách đơn đặt bàn";
 }
@@ -26,8 +28,21 @@
         <div class="card-header">
             <h3 class="card-title">Danh sách đặt bàn</h3>
         </div>
+        <div class="row">
+            <div class="col-6">
+                @using (Html.BeginForm("Index", "Order", FormMethod.Get, new { }))
+                {
+                    <div class="input-group input-group-sm" style="padding-left: 20px; padding-top: 20px;">
+                        @Html.TextBox("SearchText")
+                        <span class="input-group-append">
+                            <button type="submit" class="btn btn-info btn-flat">Tìm kiếm</button>
+                        </span>
+                    </div>
+                }
+            </div>
+        </div>
         <div class="card-body">
-            <table class="table table-bordered"style="text-align: center;" >
+            <table class="table table-bordered" style="text-align: center;">
                 <thead>
                     <tr>
                         <th>STT</th>
@@ -50,20 +65,20 @@
                         {
                             if (item.ship == 0)
                             {
-                            <tr>
-                                <td>@i</td>
-                                <td>@item.code</td>
-                                <td>@item.customername</td>
-                                <td>@item.phone</td>
-                                <td>@DoAnCoSo.Common.Common.FormatNumber(item.total, 0) đ</td>                              
-                                <td>@item.datetime.ToString("dd/MM/yyyy hh:mm:tt")</td>
-                                <td>
-                                    <a href="/admin/order/view/@item.id" class="btn btn-sm btn-success">Chi tiết</a>
-                                    <a href="/admin/invoice/view/@item.id" class="btn btn-sm btn-success">Lập hóa đơn</a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>@i</td>
+                                    <td>@item.code</td>
+                                    <td>@item.customername</td>
+                                    <td>@item.phone</td>
+                                    <td>@DoAnCoSo.Common.Common.FormatNumber(item.total, 0) đ</td>
+                                    <td>@item.datetime.ToString("dd/MM/yyyy hh:mm:tt")</td>
+                                    <td>
+                                        <a href="/admin/order/view/@item.id" class="btn btn-sm btn-success">Chi tiết</a>
+                                        <a href="/admin/invoice/view/@item.id" class="btn btn-sm btn-success">Lập hóa đơn</a>
+                                    </td>
+                                </tr>
                             }
-                                i++;                           
+                            i++;
                         }
                     }
                 </tbody>

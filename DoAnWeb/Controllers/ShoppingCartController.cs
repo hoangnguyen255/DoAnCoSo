@@ -202,6 +202,10 @@ namespace DoAnCoSo.Controllers
         {
             return View();
         }
+        public ActionResult CheckOutShipSuccess()
+        {
+            return View();
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
