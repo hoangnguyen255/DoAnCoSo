@@ -19,7 +19,9 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="text-center">Đặt bàn</h1>
+                    <h1 class="text-center" style="font-family: 'Dancing Script', cursive; color: crimson;">
+                        Đặt bàn
+                    </h1>
                 </div>
             </div>
             <hr />
@@ -70,10 +72,10 @@
             }
         }
 
-        @*function OnSuccessCO(rs) {
+        function OnSuccessCO(rs) {
             debugger;
             location.href = "/ShoppingCart/CheckOutSuccess";
-        }*@
+        }
 
         $(document).ready(function () {
             $('body').on('change', '#drTypePayment', function () {

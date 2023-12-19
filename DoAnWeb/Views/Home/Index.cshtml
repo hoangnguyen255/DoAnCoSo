@@ -1,18 +1,38 @@
-﻿Nguyễn Thị Linh Chi
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="~/Content/assets/styles/bootstrap4/bootstrap.min.css">
 
 
-<div class="main_slider" style="background-image: url(/Uploads/images/icon/301233268_188255490260753_241183637665719382_n.jpg)">
+<div class="main_slider" @*style="background-image: url(/Uploads/images/icon/301233268_188255490260753_241183637665719382_n.jpg)*@">
+@*    <img src="~/Uploads/images/icon/301233268_188255490260753_241183637665719382_n.jpg" />
+*@    @*<div class="banner">
+        <a target="_blank" href="https://nhahangvanlocphat.vn/thuc-don"><img src="https://nhahangvanlocphat.vn/images/Banner/vlp-sn-tai-nha-slide.jpg" alt="" /></a>
+        <a target="_blank" href=""><img src="https://nhahangvanlocphat.vn/images/Banner/so-do-duong-di-van-loc-phat-17-10-2023.jpg" alt="" /></a>
+        <a target="_blank" href=""><img src="https://nhahangvanlocphat.vn/images/Banner/banner-de-nhat-heo-toc.jpg" alt="" /></a>
+    </div>*@
+    <div class="main_slider">
+        <img id="img" onclick="changimage()" href="/ban" src="~/Uploads/images/icon/anhnen1.png" alt="/ban" />
+    </div>      
+    <script>
+        var index = 1;
+        changimage = function () {
+            var imgs = ["/Uploads/images/icon/anhnen1.png", "/Uploads/images/icon/heomoi1.jpg", "/Uploads/images/icon/vlp1.jpg"];
+            document.getElementById('img').src = imgs[index];
+            index++;
+            if (index == 3) {
+                index = 0;
+            }
+        }
+        setInterval(changimage, 3000);
+    </script>
     <div class="container fill_height">
         <div class="row align-items-center fill_height">
             <div class="col">
                 <div class="main_slider_content">
-                    <h5>Đặt bàn ngay để được nhận nhiều ưu đãi</h5>
-                    <h1>Cảm nhận hương vị món ăn Việt </h1>
+                    <h3 style="font-family: 'Dancing Script', cursive; font-size: 2.70rem;">Đặt bàn ngay để được nhận nhiều ưu đãi!</h3>
+                    <h1 style="font-family: 'Dancing Script', cursive;">Cảm nhận hương vị món ăn Việt </h1>
                     <a href="/ban" class="btn" style=" display: inline-block; background: #ff523b; color: #fff; padding: 8px 30px; margin: 30px 0; border-radius: 30px; transition: background 0.5s;"> Đặt bàn ngay &#10132;</a>
                 </div>
             </div>
@@ -66,7 +86,7 @@
                             <div class="timer_unit">Giây</div>
                         </li>
                     </ul>
-                    <div class="red_button deal_ofthe_week_button"><a href="/chi-tiet/may-nuong-banh-mi-wmf-lolo-glass-toaster-18">mua ngay</a></div>
+                    <div class="red_button deal_ofthe_week_button"><a href="/chi-tiet/set-hai-san-hoang-gia-41">mua ngay</a></div>
                 </div>
             </div>
         </div>

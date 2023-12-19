@@ -25,12 +25,14 @@ namespace DoAnCoSo.Areas.Admin.Controllers
                         on o.id equals od.orderid
                         join p in db.Products
                         on od.productid equals p.id
+                        where o.status == 3
                         select new
                         {
                             CreatedDate = o.createddate,
                             Quantity = od.quantity,
                             Price = od.price,
-                            OriginalPrice = p.originalprice
+                            OriginalPrice = p.originalprice,
+                            Ship = o.ship
                         };
             if (!string.IsNullOrEmpty(fromDate))
             {
@@ -47,12 +49,12 @@ namespace DoAnCoSo.Areas.Admin.Controllers
             {
                 Date = x.Key.Value,
                 TotalBuy = x.Sum(y => y.Quantity * y.OriginalPrice),
-                TotalSell = x.Sum(y => y.Quantity * y.Price),
+                TotalSell = x.Sum(y => y.Quantity * y.Price +y.Ship),
             }).Select(x => new
             {
                 Date = x.Date,
                 DoanhThu = x.TotalSell,
-                LoiNhuan = x.TotalSell - x.TotalBuy
+                LoiNhuan = x.TotalSell - x.TotalBuy 
             });
             return Json(new { Data = result }, JsonRequestBehavior.AllowGet);
         }

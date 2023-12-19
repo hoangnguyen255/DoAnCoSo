@@ -1,12 +1,14 @@
 ﻿@model IEnumerable<DoAnCoSo.Models.EF.ProductCategory>
 
+<style>
+</style>
 @if (Model != null && Model.Any())
 {
     <div class="banner">
         <div class="row">
             <div class="col text-center">
                 <div class="section_title new_arrivals_title" style="margin-top: 76px; margin-bottom: 50px;">
-                    <h2>LOẠI MÓN ĂN</h2>
+                    <h2 style="font-family: 'Dancing Script', cursive; color: crimson;">LOẠI MÓN ĂN</h2>
                 </div>
             </div>
         </div>
@@ -16,8 +18,8 @@
                 {
                     <div class="col-md-4">
                         <div class="banner_item align-items-center" style="background-image:url(@item.icon)">
-                            <div class="banner_category">
-                                <a href="/danh-muc-san-pham/@item.alias-@(item.id)">@item.title</a>
+                            <div class="button_ct">
+                                <a href="/danh-muc-san-pham/@item.alias-@(item.id)" style="color: #a3290d; font-family: 'Satisfy', cursive; font-size: 21px; font-weight: bold; padding: 13px 1px 14px 0 ">@item.title</a>
                             </div>
                         </div>
                     </div>

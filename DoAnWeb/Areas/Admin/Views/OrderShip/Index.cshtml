@@ -94,8 +94,23 @@
                                     </td>
                                     <td>
                                         <a href="/admin/ordership/view/@item.id" class="btn btn-sm btn-success">Chi tiết</a>
-                                        <a href="#" class="btn btn-sm btn-danger btnCapNhat" data-id="@item.id">Cập nhật</a>
-                                        <a href="/admin/invoice/view/@item.id" class="btn btn-sm btn-success">Lập hóa đơn</a>
+                                        @if (item.status == 1 || item.status == 2 || item.status == 0)
+                                        {
+                                            <a href="#" class="btn btn-sm btn-danger btnCapNhat" data-id="@item.id">Cập nhật</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="#" class="btn btn-sm btn-danger btnCapNhat" disable style="pointer-events:none; opacity:0.2;" data-id="@item.id">Cập nhật</a>
+                                        }
+                                        @if (item.datetime < DateTime.Now)
+                                        {
+                                            <a href="/admin/invoice/view/@item.id" class="btn btn-sm btn-success">Lập hóa đơn</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="/admin/invoice/view/@item.id" class="btn btn-sm btn-success" disable style="pointer-events:none; opacity:0.2;">Lập hóa đơn</a>
+
+                                        }
                                     </td>
                                 </tr>
                             }

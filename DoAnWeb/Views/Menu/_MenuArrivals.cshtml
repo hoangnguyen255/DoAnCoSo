@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col text-center">
             <div class="section_title new_arrivals_title">
-                <h2>MÓN ĂN MỚI</h2>
+                <h2 style="font-family: 'Dancing Script', cursive; color: crimson;">MÓN ĂN MỚI</h2>
             </div>
         </div>
     </div>
@@ -13,10 +13,10 @@
         <div class="col text-center">
             <div class="new_arrivals_sorting">
                 <ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
-                    <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">tất cả</li>
+                    <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" style =" font-family: 'Satisfy', cursive;" data-filter="*">tất cả</li>
                     @foreach (var item in Model)
                     {
-                        <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".@item.alias">@item.title</li>
+                        <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" style =" font-family: 'Satisfy', cursive;" data-filter=".@item.alias">@item.title</li>
                     }
                 </ul>
             </div>

@@ -9,12 +9,12 @@
         {
             strImage = img.image;
         }
-        <div class="product-item @item.ProductCategory.alias">
+        <div class="product-item @item.ProductCategory.alias" style="left: 232px; top: 114px;">
             <div class="product discount product_filter">
                 <div class="product_image">
-                    <div class="thu-nghiem-zoom">
+                   
                         <img src="@strImage" alt="@item.title">
-                    </div>
+                   
                     </div>
                     <div class="favorite favorite_left"></div>
                     @if (item.pricesale > 0)
@@ -23,14 +23,14 @@
 
                     }
                     <div class="product_info">
-                        <h6 class="product_name"><a href="/chi-tiet/@item.alias-@(item.id)">@item.title</a></h6>
+                        <h6 class="product_name" style="font-size: x-large; font-family: 'Dancing Script' , cursive;"><a href="/chi-tiet/@item.alias-@(item.id)">@item.title</a></h6>
                         @if (item.pricesale > 0)
                         {
-                            <div class="product_price">@DoAnCoSo.Common.Common.FormatNumber(item.pricesale, 0) đ<span>@DoAnCoSo.Common.Common.FormatNumber(item.price, 0) đ</span></div>
+                            <div class="product_price" style="font-size:16px;" >@DoAnCoSo.Common.Common.FormatNumber(item.pricesale, 0) đ<span>@DoAnCoSo.Common.Common.FormatNumber(item.price, 0) đ</span></div>
                         }
                         else
                         {
-                            <div class="product_price">@DoAnCoSo.Common.Common.FormatNumber(item.price, 0) đ</div>
+                            <div class="product_price" style="font-size:16px;">@DoAnCoSo.Common.Common.FormatNumber(item.price, 0) đ</div>
 
                         }
                         <h6>@item.description</h6>

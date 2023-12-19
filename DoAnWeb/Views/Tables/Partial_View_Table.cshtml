@@ -1,33 +1,11 @@
 ﻿@model IEnumerable<DoAnCoSo.Models.EF.TableViewModel>
-@*@if (Model != null && Model.Any())
-    {
-        foreach (var item in Model)
-        {
-            var strImage = "";
-            var img = item.TableImages.FirstOrDefault(x => x.isdefault);
-            if (img != null)
-            {
-                strImage = img.image;
-            }
-            <div class="product-item @item.Space.alias">
-                <div class="product discount product_filter">
-                    <div class="product_image">
-                        <img src="@strImage" alt="@item.title">
-                    </div>
-                    <div class="favorite faorite_left"></div>
-                    <div class="quantity">
-                        <h6 class="quantity" style="margin-top: 15px; margin-left: 37px">@item.description</h6>
-                    </div>
-                    <div class="product_info">
-                        <h6 class="product_name"><a href="/chi-tiet/@item.alias-@(item.id)">@item.title</a></h6>
-
-                    </div>
-                </div>
-                <div class="red_button add_to_cart_button"><a href="" class="btnAddTableToCart" data-id="@item.id">add to cart</a></div>
-            </div>
-        }
-    }*@
-
+<style>
+    .transparent_product_image {
+        opacity: 0.3; /* Độ trong suốt 50% */
+@*        background-color: rgba(255, 0, 0, 0.5);
+*@        position: relative;
+    }
+</style>
 @if (Model != null && Model.Any())
 {
     foreach (var item in Model)
@@ -40,14 +18,40 @@
         }
         <div class="product-item @item.table.Space.alias" style="height: 215px; width:100%;">
             <div class="product discount product_filter" style="height:184px">
-                <div class="product_image" @*style="width: 100px; text-align: center; height: 200px"*@>
-                    <img style=" height: 160px; width: 177px" src="@strImage" alt="@item.table.title">
-                </div>
-               @* <div class="favorite favorite_left"></div>*@
-
-                <div class="product_info">
-                    <h6 class="product_name" style="font-size: large; margin-top: 3px"><a href="/chi-tiet/@item.table.alias-@(item.table.id)">@item.table.title</a></h6>
-                </div>
+                @if (item.isActive == false)
+                {
+                    <div class="thu-nghiem-zoom">
+                        <div class="transparent_product_image" style=" object-fit: cover;" @*style="width: 100px; text-align: center; height: 200px"*@>
+                            <img style=" height: 160px; width: 177px" src="@strImage" alt="@item.table.title">
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    if (item.isActive == true)
+                    {
+                        <div class="thu-nghiem-zoom">
+                            <div class="product_image">
+                                <img style=" height: 160px; width: 177px" src="@strImage" alt="@item.table.title">
+                            </div>
+                        </div>
+                    }
+                }
+                @if (item.isActive == false)
+                {
+                    <div class="product_info">
+                        <h6 class="product_name" style="font-size: large; margin-top: 3px; color: red; font-family: 'Pacifico', cursive;">Đã được đặt</h6>
+                    </div>
+                }
+                else
+                {
+                    if (item.isActive == true)
+                    {
+                        <div class="product_info">
+                            <h6 class="product_name" style="font-size: large; margin-top: 3px; font-family: 'Pacifico', cursive; color: greenyellow;"><a style="color:limegreen;" href="/chi-tiet/@item.table.alias-@(item.table.id)">@item.table.title</a></h6>
+                        </div>
+                    }
+                }
             </div>
             @if (item.isActive == false)
             {
@@ -61,7 +65,7 @@
                     <div class="red_button add_to_cart_button" style="height: 30px;"><a href="" class="btnAddTableToCart" data-id="@item.table.id">add to cart</a></div>
 
                 }
-         
+
             }
         </div>
     }

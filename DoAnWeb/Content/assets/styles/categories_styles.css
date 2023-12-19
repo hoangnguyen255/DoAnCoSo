@@ -35,29 +35,42 @@ COLOR PALETTE
 /***********
 1. Fonts
 ***********/
-
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,900');
-
-.thu-nghiem-zoom img {
-	display: block;
-	transition: all .3s ease;
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+.hotline {
+	background: #b67f20;
+	background: -moz-linear-gradient(left,#b67f20 0,#fbeb75 49%,#b67f20 100%);
+	background: -webkit-gradient(left top,right top,color-stop(0,#b67f20),color-stop(49%,#fbeb75),color-stop(100%,#b67f20));
+	background: -webkit-linear-gradient(left,#b67f20 0,#fbeb75 49%,#b67f20 100%);
+	background: -o-linear-gradient(left,#b67f20 0,#fbeb75 49%,#b67f20 100%);
+	background: -ms-linear-gradient(left,#b67f20 0,#fbeb75 49%,#b67f20 100%);
+	background: linear-gradient(to right,#b67f20 0,#fbeb75 49%,#b67f20 100%);
+	margin: 1px;
+	float: left;
+	padding: 3px 15px;
+	color: #000;
+	float: left;
+	font-size: 1.4rem;
+	font-family: Roboto-Light;
+	position: relative;
+	margin-right: 10px
 }
 
-	.thu-nghiem-zoom img:hover {
-		transform: scale(1.3); /* cỡ zoom khi di chuột vào */
+	.hotline:before {
+		content: "";
+		position: absolute;
+		z-index: 1;
+		border: 1px solid #e7b534;
+		width: calc(100% + 4px);
+		height: calc(100% + 4px);
+		left: -3px;
+		top: -3px
 	}
-
-.thu-nghiem-zoom div {
-	display: block;
-	overflow: hidden;
-}
 /*********************************
 2. Body and some general stuff
 *********************************/
-
-
-*
-{
+* {
 	margin: 0;
 	padding: 0;
 }
@@ -77,6 +90,11 @@ div
 	-webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.thu-nghiem-zoom div {
+	display: block;
+	overflow: hidden;
 }
 ul
 {
@@ -266,6 +284,7 @@ section
 	background: url(https://nhahangvanlocphat.vn/images/bg_dichvu_home.jpg) no-repeat bottom;
 	
 }
+
 
 /*********************************
 3. Home
@@ -1361,6 +1380,7 @@ section
 	height: 340px;
 	border-right: solid 1px #e9e9e9;
 }
+
 .product_image {
 	/*width: 250px;
 	height: 200px;*/
@@ -1375,6 +1395,16 @@ section
 		/*margin-left:40px;*/
 		/*height: 90%;*/
 	}
+.thu-nghiem-zoom img {
+	display: block;
+	transition: all .3s ease;
+}
+
+	.thu-nghiem-zoom img:hover {
+		display: block;
+		transform: scale(1.1); /* cỡ zoom khi di chuột vào */
+	}
+
 .product_info
 {
 	text-align: center;

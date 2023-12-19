@@ -13,6 +13,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace DoAnCoSo.Controllers
 {
@@ -256,6 +257,7 @@ namespace DoAnCoSo.Controllers
                     order.ship = decimal.Parse(delivery.ToString());
 
                     db.Orders.Add(order);
+                    Session.Remove("Distance");
                     db.SaveChanges();
                     //return Json("CheckOutSuccess");
                     //send mail cho khachs hang
@@ -304,6 +306,8 @@ namespace DoAnCoSo.Controllers
                     contentAdmin = contentAdmin.Replace("{{TongTien}}", DoAnCoSo.Common.Common.FormatNumber(TongTien, 0));
                     DoAnCoSo.Common.Common.SendMail("VietKichen", "Đơn đặt hàng mới #" + order.code, contentAdmin.ToString(), ConfigurationManager.AppSettings["EmailAdmin"]);
                     cart.clearCart();
+                    Session.Remove("Distance");
+
                     /*code = new { Success = true, Code = req.typepayment, Url = "" };
                     //var url = "";
                     if (req.typepayment == 2)

@@ -50,6 +50,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Downloads\ckfinder\bin\Release\CKFinder.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CognitiveServices.Speech.csharp, Version=1.34.0.28, Culture=neutral, PublicKeyToken=d2e6dcccb609e663, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CognitiveServices.Speech.1.34.0\lib\net462\Microsoft.CognitiveServices.Speech.csharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
@@ -353,6 +356,7 @@
     <Content Include="Content\assets\dist\js\pages\dashboard.js" />
     <Content Include="Content\assets\dist\js\pages\dashboard2.js" />
     <Content Include="Content\assets\dist\js\pages\dashboard3.js" />
+    <Content Include="Content\assets\images\a.jpg" />
     <Content Include="Content\assets\images\banner_1.jpg" />
     <Content Include="Content\assets\images\banner_2.jpg" />
     <Content Include="Content\assets\images\banner_3.jpg" />
@@ -366,8 +370,6 @@
     <Content Include="Content\assets\images\download.jpg" />
     <Content Include="Content\assets\images\haisan.jpg" />
     <Content Include="Content\assets\images\map_marker.png" />
-    <Content Include="Content\assets\images\pngtree-restaurant-menu-background-material-image_158673.jpg" />
-    <Content Include="Content\assets\images\pngtree-restaurant-menu-background-material-image_158677.jpg" />
     <Content Include="Content\assets\images\pngtree-restaurant-set-menu-background-material-image_158473.jpg" />
     <Content Include="Content\assets\images\product_1.png" />
     <Content Include="Content\assets\images\product_10.png" />
@@ -3414,6 +3416,8 @@
     <Content Include="Areas\Admin\Views\OrderShip\Partial_SanPham.cshtml" />
     <Content Include="Areas\Admin\Views\OrderShip\View.cshtml" />
     <Content Include="Areas\Admin\Views\Order\IndexDate.cshtml" />
+    <Content Include="fonts\Satisfy-Regular.ttf" />
+    <Content Include="Content\assets\Satisfy-Regular.ttf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3431,14 +3435,22 @@
     <Content Include="Uploads\files\3x3.png" />
     <Content Include="Uploads\files\user-2.png" />
     <Content Include="Uploads\images\icon\1_auto_x2_auto_x2.jpg" />
-    <Content Include="Uploads\images\icon\301233268_188255490260753_241183637665719382_n.jpg" />
-    <Content Include="Uploads\images\icon\353068537_211757027918853_4931193201969409622_n.jpg" />
+    <Content Include="Uploads\images\icon\anhnen.png" />
+    <Content Include="Uploads\images\icon\anhnen1.png" />
     <Content Include="Uploads\images\icon\bo.jpg" />
     <Content Include="Uploads\images\icon\eb9682d45911884fd100.jpg" />
+    <Content Include="Uploads\images\icon\heomoi1.jpg" />
     <Content Include="Uploads\images\icon\icons8-messenger-48.png" />
     <Content Include="Uploads\images\icon\icons8-zalo-48.png" />
     <Content Include="Uploads\images\icon\images3.jpg" />
     <Content Include="Uploads\images\icon\img-1.png" />
+    <Content Include="Uploads\images\icon\mau-nha-hang-5-tang-thuy-khue-bt14413-2.jpg" />
+    <Content Include="Uploads\images\icon\heomoi.jpg" />
+    <Content Include="Uploads\images\icon\Screenshot1.png" />
+    <Content Include="Uploads\images\icon\Screenshot2121.png" />
+    <Content Include="Uploads\images\icon\Untitled1.png" />
+    <Content Include="Uploads\images\icon\vlp.jpg" />
+    <Content Include="Uploads\images\icon\vlp1.jpg" />
     <Content Include="Uploads\images\img-4.png" />
     <Content Include="Uploads\images\icon\spm.jpg" />
     <Content Include="Uploads\images\icon\Twitter-logo.svg.png" />
@@ -3447,6 +3459,7 @@
     <Content Include="Uploads\images\img-3.png" />
     <Content Include="Uploads\images\img-5.png" />
     <Content Include="Uploads\images\mau-nha-hang-5-tang-thuy-khue-bt14413-5_auto_x2_auto_x2 %281%29.jpg" />
+    <Content Include="Uploads\images\pngtree-restaurant-set-menu-background-material-image_158473.jpg" />
     <Content Include="Uploads\images\tumbnailwe.jpg" />
     <Content Include="Uploads\_thumbs\Files\3x3.png" />
     <Content Include="Uploads\_thumbs\Files\user-2.png" />
@@ -3622,8 +3635,10 @@
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CognitiveServices.Speech.1.34.0\build\net462\Microsoft.CognitiveServices.Speech.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CognitiveServices.Speech.1.34.0\build\net462\Microsoft.CognitiveServices.Speech.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Microsoft.CognitiveServices.Speech.1.34.0\build\net462\Microsoft.CognitiveServices.Speech.targets" Condition="Exists('..\packages\Microsoft.CognitiveServices.Speech.1.34.0\build\net462\Microsoft.CognitiveServices.Speech.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -7,11 +7,11 @@
         {
             if (ViewBag.CateId == item.id)
             {
-                <li class="active"><a href="/danh-muc-ban/@item.alias-@(item.id)"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>@item.title</a></li>
+                <li class="active" style="font-weight:700;"><a href="/danh-muc-ban/@item.alias-@(item.id)"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>@item.title</a></li>
             }
             else
             {
-                <li><a id="space" href="/danh-muc-ban/@item.alias-@(item.id)">@item.title</a></li>
+                <li><a id="space" style="font-weight:700;" href="/danh-muc-ban/@item.alias-@(item.id)">@item.title</a></li>
 
             }
         }

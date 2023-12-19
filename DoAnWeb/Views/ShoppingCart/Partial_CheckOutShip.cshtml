@@ -18,7 +18,6 @@
         function OnSuccessCO(res) {
             if (res.responseJSON.Success) {
                 if (res.responseJSON.Code == 1) {
-                    console.log("Code is 1. Redirecting to:", location.href);
                     location.href = "/ShoppingCart/CheckOutShipSuccess";
                 }
                 else {
@@ -28,37 +27,35 @@
                 }
             }
         }
-                //function OnFailure() {
-
-                //}
     </script>
+   
     @Html.AntiForgeryToken()
-    <h3>Thông tin khách hàng </h3>
-    <div class="form-group">
-        <label>Họ và tên</label>
-        <input type="text" name="customername" required class="form-control" autocomplete="off" />
+    <h2 style="font-family: 'Dancing Script', cursive; text-align:center;">Thông tin khách hàng </h2>
+    <div class="form-group" >
+       @* <label>Họ và tên</label>*@
+        <input type="text" style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; margin-top: 25px; " name="customername" required class="form-control" autocomplete="off" placeholder="Họ và tên" />
     </div>
     <div class="form-group">
-        <label>Số điện thoại</label>
-        <input type="text" name="phone" class="form-control" autocomplete="off" />
-    </div>
-
-    <div class="form-group">
-        <label>Email</label>
-        <input type="text" name="email" class="form-control" autocomplete="off" />
+        @*<label>Số điện thoại</label>*@
+        <input type="text" style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; margin-top: 25px; " name="phone" class="form-control" autocomplete="off" placeholder="Điện thoại" />
     </div>
 
-    <div id="map"></div>
     <div class="form-group">
-        <p><label>Địa chỉ</label></p>
-        <textarea name="address" id="endLocation" rows="4" cols="106" placeholder="Địa chỉ khách hàng"></textarea>
+        @*<label>Email</label>*@
+        <input type="text" style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; margin-top: 25px; " name="email" class="form-control" autocomplete="off" placeholder="E-mail" />
+    </div>
+
+    <div id="map" style="border-radius: 30px;"></div>
+    <div class="form-group">
+        @*<p><label>Địa chỉ</label></p>*@
+        <textarea name="address" style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; margin-top: 25px; " id="endLocation" rows="4" cols="106" placeholder="Địa chỉ"></textarea>
     </div>
     <div class="form-group">
         <p id="distanceInfo"></p>
     </div>
     <div class="form-group">
-        <label>Hình thức thanh toán</label>
-        <select class="form-control" name="typepayment" id="drTypePayment">
+        <label style="font-size:large;" >Hình thức thanh toán</label>
+        <select class="form-control" style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; height:53px;" name="typepayment" id="drTypePayment">
             <option value="1" selected>COD</option>
             <option value="2">Chuyển khoản</option>
         </select>
@@ -74,7 +71,7 @@
     </div>
     <div class="form-group" id="load_send"></div>
     <div class="form-group">
-        <button type="submit" class="btn btn-block btn-success" id="btnCheckOut">Đặt hàng</button>
+        <button type="submit" class="btn btn-block btn-success"style="background: linear-gradient(to right,#b67f20 0,#fbeb75 49%,#b67f20 100%); border: 5px solid #ffd872; width: 152px; color: black; font-weight: 500; margin: auto;" id="btnCheckOut">Đặt hàng</button>
     </div>
 }
 
