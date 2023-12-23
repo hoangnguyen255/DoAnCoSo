@@ -151,16 +151,28 @@
 
         function load_data(data) {
             var strHtml = "";
+
+            // Sắp xếp mảng theo thời gian tăng dần
+            data.sort((a, b) => new Date(b.Date) - new Date(a.Date));
+
             $.each(data, function (i, item) {
                 var strDate = moment(item.Date).format('DD/MM/yyyy');
+                var formattedDoanhThu = formatNumber(item.DoanhThu);
+                var formattedLoiNhuan = formatNumber(item.LoiNhuan);
+
                 strHtml += "<tr>";
-                strHtml += "<td>"+(i+1)+"</td>";
-                strHtml += "<td>" + strDate+"</td>";
-                strHtml += "<td>"+item.DoanhThu+"</td>";
-                strHtml += "<td>"+item.LoiNhuan+"</td>";
+                strHtml += "<td>" + (i + 1) + "</td>";
+                strHtml += "<td>" + strDate + "</td>";
+                strHtml += "<td>" + formattedDoanhThu + "</td>";
+                strHtml += "<td>" + formattedLoiNhuan + "</td>";
                 strHtml += "</tr>";
             });
+
             $('#load_data').html(strHtml);
+        }
+
+        function formatNumber(number) {
+            return number.toLocaleString('en-US');
         }
     </script>
 }

@@ -28,7 +28,7 @@ namespace DoAnCoSo.Areas.Admin.Controllers
                         where o.status == 3
                         select new
                         {
-                            CreatedDate = o.createddate,
+                            CreatedDate = o.datetime,
                             Quantity = od.quantity,
                             Price = od.price,
                             OriginalPrice = p.originalprice,
@@ -49,7 +49,7 @@ namespace DoAnCoSo.Areas.Admin.Controllers
             {
                 Date = x.Key.Value,
                 TotalBuy = x.Sum(y => y.Quantity * y.OriginalPrice),
-                TotalSell = x.Sum(y => y.Quantity * y.Price +y.Ship),
+                TotalSell = x.Sum(y=>y.Price*y.Quantity+y.Ship),
             }).Select(x => new
             {
                 Date = x.Date,

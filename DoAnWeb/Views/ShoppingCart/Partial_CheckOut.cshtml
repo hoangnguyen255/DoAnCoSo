@@ -4,29 +4,36 @@
     HttpMethod = "POST",
     UpdateTargetId = "load_data",
     OnComplete = "OnSuccessCO",
-    OnFailure = "Onfailure"
+    OnFailure = "Onfailure",
+    OnBegin = "OnBeginCO"
 }, new { @id = "myForm" }))
 {
+    <script>
+        function OnBeginCO() {
+            $('#btnCheckOut').attr("disabled", "disabled");
+            $('#load_send').html('<h3>Xin chờ trong giây lát....</h3>');
+        }
+    </script>
     @Html.AntiForgeryToken()
     <h2 style="font-family: 'Dancing Script', cursive; text-align:center;">Thông tin khách hàng </h2>
     <div class="form-group">
         @*<label>Họ và tên</label>*@
-        <input type="text" style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; margin-top: 25px; "name="customername" required class="form-control" autocomplete="off" placeholder="Họ và tên"/>
+        <input type="text" style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; margin-top: 25px; " name="customername" required class="form-control" autocomplete="off" placeholder="Họ và tên" />
     </div>
     <div class="form-group">
         @*<label>Số điện thoại</label>*@
-        <input type="text"style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; margin-top: 25px; " name="phone" class="form-control" autocomplete="off" placeholder="Điện thoại"/>
+        <input type="text" style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; margin-top: 25px; " name="phone" class="form-control" autocomplete="off" placeholder="Điện thoại" />
     </div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     @*<p><label>Thời gian</label></p>*@
     @*<input type="text" name="datetime" id="datetimepicker" placeholder=" Chọn ngày giờ">*@
-    <input hidden type="text" style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; margin-top: 25px; "name="datetime" id="datetimepicker" data-datetime="@Session["TimeTable"]" />
-    <label type="text"style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; margin-top: 25px; " name="datetime" class="form-control">Thời gian: @Session["TimeTable"]</label>
+    <input hidden type="text" style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; margin-top: 25px; " name="datetime" id="datetimepicker" data-datetime="@Session["TimeTable"]" />
+    <label type="text" style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; margin-top: 25px; " name="datetime" class="form-control">Thời gian: @Session["TimeTable"]</label>
 
 
     <div class="form-group">
         @*<label>Email</label>*@
-        <input type="text"style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; margin-top: 25px; " name="email" class="form-control" autocomplete="off"  placeholder="E-mail" />
+        <input type="text" style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; margin-top: 25px; " name="email" class="form-control" autocomplete="off" placeholder="E-mail" />
     </div>
     @* <div class="form-group">
             <label>Hình thức thanh toán</label>
@@ -37,9 +44,9 @@
         </div>*@
     <div class="form-group">
         @*<p><label>Ghi chú</label></p>*@
-        <textarea name="address"style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; margin-top: 25px; " rows="4" cols="106" placeholder="Ghi chú: Số lượng khách, địa chỉ ..."></textarea>
+        <textarea name="address" style="border-radius: 30px; border: 1px solid #eb884c; padding: 10px 30px; margin-top: 25px; " rows="4" cols="106" placeholder="Ghi chú: Số lượng khách, địa chỉ ..."></textarea>
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-block btn-success"style="background: linear-gradient(to right,#b67f20 0,#fbeb75 49%,#b67f20 100%); border: 5px solid #ffd872; width: 152px; color: black; font-weight: 500; margin: auto;">Đặt bàn</button>
+        <button type="submit" class="btn btn-block btn-success" style="background: linear-gradient(to right,#b67f20 0,#fbeb75 49%,#b67f20 100%); border: 5px solid #ffd872; width: 152px; color: black; font-weight: 500; margin: auto;"id=" btnCheckOut">Đặt bàn</button>
     </div>
 }

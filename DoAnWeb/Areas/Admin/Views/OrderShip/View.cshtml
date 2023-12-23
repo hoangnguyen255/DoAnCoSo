@@ -76,8 +76,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Phí ship</label>
-                        <p class="form-control"> @DoAnCoSo.Common.Common.FormatNumber(Model.ship,0) đ</p>
+                        <label>Tổng tiền</label>
+                        <p class="form-control"> @DoAnCoSo.Common.Common.FormatNumber(Model.total, 0) đ</p>
                     </div>
                 </div>
             </div>
@@ -89,11 +89,12 @@
                     @Html.Action("Partial_SanPham", "OrderShip", new { id = Model.id })
                 </div>
             </div>
+            
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group" style="margin-left: 815px;">
+                        <label style="display:block;"><th>Phí ship:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @DoAnCoSo.Common.Common.FormatNumber(Model.ship, 0) đ</th></label>
                         <label><th>Tổng tiền:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @DoAnCoSo.Common.Common.FormatNumber(Model.total, 0) đ</th></label>
-
                     </div>
                 </div>
             </div>
